@@ -1,0 +1,37 @@
+"Prefixキー
+escape t
+
+shell -$SHELL
+screen 1
+bind c eval 'screen 1'
+defscrollback 10000
+
+"スタートアップメッセージを消す
+startup_message off
+
+"ビジュアルベルを切る
+vbell off
+
+"256色表示設定
+term xterm-256color
+
+"ファンクションキーをウィンドウに割り当てる
+termcapinfo xterm-256color 'k1=\E[11~:k2=\E[12~:k3=\E[12~:k4=\E[14~'
+bindkey -k k1 select 1
+bindkey -k k2 select 2
+bindkey -k k3 select 3
+bindkey -k k4 select 4
+bindkey -k k5 select 5
+bindkey -k k6 select 6
+bindkey -k k7 select 7
+bindkey -k k8 select 8
+bindkey -k k9 select 9
+bindkey -k k; select 10
+bindkey -k F1 select 11
+bindkey -k F2 select 12
+
+"端末が落ちたら自動的にデタッチ
+autodetach on
+
+"ステータス設定
+hardstatus alwayslastline "%{b k} %H %{bu dr} |%-w%{=r }%n %t%{-}%+w|"

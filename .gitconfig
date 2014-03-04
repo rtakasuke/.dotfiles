@@ -1,0 +1,10 @@
+[user]
+	name = rtakasuke
+	email = takahashi@tamagohan.skr.jp
+	email = color.ui
+
+[alias]
+	st = status
+	ci = commit
+	up = pull
+	br = branch
