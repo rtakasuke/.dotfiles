@@ -5,6 +5,8 @@ set nocompatible
 "Encode
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,utf-16,ucs-2-internal,ucs-2,cp932,shift-jis,euc-jp,japan
+scriptencoding utf-8
+set encoding=utf-8
 
 
 "ファイルフォーマット
@@ -122,8 +124,7 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<
 
 
 "--------------------------------------------------------
-" PLUGIN - NeoBundle
-" :NeoBundleInstall でインストール
+" NeoBundle ここから
 "--------------------------------------------------------
 set nocompatible "vi 互換をoff
 filetype off
@@ -134,14 +135,29 @@ endif
 
 "--プラグイン名ここから--
 
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'AutoComplPop'
 NeoBundle 'quickrun.vim'
 NeoBundle 'yanktmp.vim'
 NeoBundle 'unite.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'cocopon/colorswatch.vim'
 
 "--プラグイン名ここまで--
 
 filetype plugin indent on     " required!
 filetype indent on
+"--------------------------------------------------------
+" NeoBundle ここまで
+"--------------------------------------------------------
+
+
+
+"--------------------------------------------------------
+"PLUGIN lightline.vim ここから
+"--------------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+"--------------------------------------------------------
+"lightline.vim ここまで
+"--------------------------------------------------------
