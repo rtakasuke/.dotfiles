@@ -65,9 +65,9 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc> "Escを2回押すと検索時ハイライトを解除
-nmap * *N "*でワードサーチする場合にいきなり次へジャンプしない
-nmap # #N "#でワードサーチする場合にいきなり次へジャンプしない
+nmap <Esc><Esc> :nohlsearch<CR><Esc> 
+nmap * *N
+nmap # #N
 
 
 "PLUGIN:yanktmp.vim(違うスクリーンでコピペができるよ)
@@ -131,13 +131,17 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim.git
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+
 "--プラグイン名ここから--
 
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
 NeoBundle 'AutoComplPop'
 NeoBundle 'quickrun.vim'
 NeoBundle 'yanktmp.vim'
 NeoBundle 'unite.vim'
 
 "--プラグイン名ここまで--
-filetype plugin on
+
+filetype plugin indent on     " required!
 filetype indent on
