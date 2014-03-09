@@ -20,14 +20,6 @@ alias rm='rm -i'
 alias sc='screen'
 alias scr='screen -r'
 alias scd='screen -d'
-# for git
-alias gco="git checkout"
-alias gst="git status"
-alias gstat="git status"
-alias gci="git commit -a"
-alias gdiff="git diff"
-alias gbranch="git branch"
-
 
 ## prompt
 PS1="\`
