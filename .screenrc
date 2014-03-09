@@ -1,4 +1,4 @@
-"Prefixキー
+# Prefixキー
 escape t
 
 shell -$SHELL
@@ -6,16 +6,16 @@ screen 1
 bind c eval 'screen 1'
 defscrollback 10000
 
-"スタートアップメッセージを消す
+# スタートアップメッセージを消す
 startup_message off
 
-"ビジュアルベルを切る
+# ビジュアルベルを切る
 vbell off
 
-"256色表示設定
+# 256色表示設定
 term xterm-256color
 
-"ファンクションキーをウィンドウに割り当てる
+# ファンクションキーをウィンドウに割り当てる
 termcapinfo xterm-256color 'k1=\E[11~:k2=\E[12~:k3=\E[12~:k4=\E[14~'
 bindkey -k k1 select 1
 bindkey -k k2 select 2
@@ -30,8 +30,8 @@ bindkey -k k; select 10
 bindkey -k F1 select 11
 bindkey -k F2 select 12
 
-"端末が落ちたら自動的にデタッチ
+# 端末が落ちたら自動的にデタッチ
 autodetach on
 
-"ステータス設定
-hardstatus alwayslastline "%{b k} %H %{bu dr} |%-w%{=r }%n %t%{-}%+w|"
+# ステータス設定
+hardstatus alwayslastline # %{b k} %H %{bu dr} |%-w%{=r }%n %t%{-}%+w|# 

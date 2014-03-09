@@ -65,7 +65,8 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc> "Escを2回押すと検索時ハイライトを解除
+"Escを2回押すと検索時ハイライトを解除
+nmap <Esc><Esc> :nohlsearch<CR><Esc> 
 nmap * *N "*でワードサーチする場合にいきなり次へジャンプしない
 nmap # #N "#でワードサーチする場合にいきなり次へジャンプしない
 
@@ -137,6 +138,7 @@ NeoBundle 'AutoComplPop'
 NeoBundle 'quickrun.vim'
 NeoBundle 'yanktmp.vim'
 NeoBundle 'unite.vim'
+NeoBundle 'Lokaltog/vim-powerline'
 
 "--プラグイン名ここまで--
 filetype plugin on
