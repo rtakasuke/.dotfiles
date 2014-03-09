@@ -5,6 +5,8 @@ set nocompatible
 "Encode
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,utf-16,ucs-2-internal,ucs-2,cp932,shift-jis,euc-jp,japan
+scriptencoding utf-8
+set encoding=utf-8
 
 
 "ファイルフォーマット
@@ -35,14 +37,14 @@ set backspace=2
 
 
 "タブ・ウィンドウの移動をキーバインド
-" select tab (shift + ctrl + カーソルキー)
-map <C-S-LEFT>  <ESC>:tabp<CR>
-map <C-S-RIGHT> <ESC>:tabn<CR>
-" select window (ctrl + カーソルキー)
-map <C-LEFT>  <ESC><C-W>h<CR>
-map <C-RIGHT> <ESC><C-W>l<CR>
-map <C-UP>    <ESC><C-W>k<CR>
-map <C-DOWN>  <ESC><C-W>j<CR>
+" select tab (shift + ctrl + hjkl)
+map <C-S-h> <ESC>:tabp<CR>
+map <C-S-l> <ESC>:tabn<CR>
+" select window (ctrl + hjkl)
+map <C-h>   <ESC><C-W>h<CR>
+map <C-l>   <ESC><C-W>l<CR>
+map <C-k>   <ESC><C-W>k<CR>
+map <C-j>   <ESC><C-W>j<CR>
 
 
 "Indent
@@ -65,12 +67,12 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc> "Escを2回押すと検索時ハイライトを解除
-nmap * *N "*でワードサーチする場合にいきなり次へジャンプしない
-nmap # #N "#でワードサーチする場合にいきなり次へジャンプしない
+nmap <Esc><Esc> :nohlsearch<CR>
+nmap * *N
+nmap # #N
 
 
-"PLUGIN:yanktmp.vim(違うスクリーンでコピペができるよ)
+"PLUGIN yanktmp.vim(違うスクリーンでコピペができるよ)
 map <silent> sy :call YanktmpYanc()<CR>
 map <silent> sp :call YanctmpPaste_p<CR>
 
@@ -122,8 +124,73 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<
 
 
 "--------------------------------------------------------
-" PLUGIN - NeoBundle
-" :NeoBundleInstall でインストール
+"PLUGIN lightline.vim
+"ステータスバーをかっこよくする。
+"--------------------------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'mode_map': { 'c': 'NORMAL' },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+function! MyModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! MyReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() : 
+        \  &ft == 'unite' ? unite#get_status_string() : 
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != MyModified() ? ' ' . MyModified() : '')
+endfunction
+
+function! MyFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? '⭠ '._ : ''
+  endif
+  return ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+
+"--------------------------------------------------------
+" NeoBundle ここから
 "--------------------------------------------------------
 set nocompatible "vi 互換をoff
 filetype off
@@ -131,13 +198,18 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim.git
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
+
 "--プラグイン名ここから--
 
 NeoBundle 'AutoComplPop'
 NeoBundle 'quickrun.vim'
 NeoBundle 'yanktmp.vim'
 NeoBundle 'unite.vim'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'cocopon/colorswatch.vim'
+NeoBundle 'tpope/vim-fugitive'
 
 "--プラグイン名ここまで--
-filetype plugin on
+
+filetype plugin indent on     " required!
 filetype indent on
