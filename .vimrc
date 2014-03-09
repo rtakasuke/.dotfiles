@@ -37,14 +37,14 @@ set backspace=2
 
 
 "タブ・ウィンドウの移動をキーバインド
-" select tab (shift + ctrl + カーソルキー)
-map <D-S-LEFT>  <ESC>:tabp<CR>
-map <D-S-RIGHT> <ESC>:tabn<CR>
-" select window (ctrl + カーソルキー)
-map <D-LEFT>  <ESC><C-W>h<CR>
-map <D-RIGHT> <ESC><C-W>l<CR>
-map <D-UP>    <ESC><C-W>k<CR>
-map <D-DOWN>  <ESC><C-W>j<CR>
+" select tab (shift + ctrl + hjkl)
+map <C-S-h> <ESC>:tabp<CR>
+map <C-S-l> <ESC>:tabn<CR>
+" select window (ctrl + hjkl)
+map <C-h>   <ESC><C-W>h<CR>
+map <C-l>   <ESC><C-W>l<CR>
+map <C-k>   <ESC><C-W>k<CR>
+map <C-j>   <ESC><C-W>j<CR>
 
 
 "Indent
@@ -67,7 +67,7 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
-nmap <Esc><Esc> :nohlsearch<CR><Esc> 
+nmap <Esc><Esc> :nohlsearch<CR>
 nmap * *N
 nmap # #N
 
