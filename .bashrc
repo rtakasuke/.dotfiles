@@ -31,3 +31,8 @@ else
     echo \[\e[31m\]; 
 fi
 \`[\u@\H \w]\[\e[0m\]\n$"
+
+# ホスト名補完＠mac
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
