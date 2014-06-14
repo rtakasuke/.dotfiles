@@ -36,6 +36,10 @@ syntax on
 set backspace=indent,eol,start
 set backspace=2
 
+"カーソル移動(INSERT_MODE)
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+
 
 "mouse
 set mouse=a
@@ -75,7 +79,9 @@ set ignorecase
 set smartcase
 set wrapscan
 set hlsearch
+"Escを２回押下で検索ハイライトを解除
 nmap <Esc><Esc> :nohlsearch<CR>
+"ワードサーチ時にいきなり次に飛ばないように
 nmap * *N
 nmap # #N
 
@@ -83,6 +89,17 @@ nmap # #N
 "PLUGIN yanktmp.vim(違うスクリーンでコピペができるよ)
 map <silent> sy :call YanktmpYanc()<CR>
 map <silent> sp :call YanctmpPaste_p<CR>
+
+
+"PLUGIN quickhl.vim
+"複数のキーワードにハイライトをつけられる
+"<space>m : 単語ハイライト/解除
+"<space>M : ハイライト全解除
+nmap <space>m <Plug>(quickhl-toggle)
+xmap <space>m <Plug>(quickhl-toggle)
+nmap <space>M <Plug>(quickhl-reset)
+xmap <space>M <Plug>(quickhl-reset)
+nmap <space>j <Plug>(quickhl-match)
 
 
 "Folding
@@ -100,7 +117,7 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 nnoremap <Space> <PageDown>
 
 
-"ホップアップの色
+"ポップアップの色
 hi Pmenu      ctermbg=gray ctermfg=black
 hi PmenuSel   ctermbg=red  ctermfg=black
 hi PmenuSbar  ctermbg=darkgray
@@ -110,8 +127,6 @@ hi PmenuThumb ctermbg=lightgray
 "Status line
 set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
 set laststatus=2
-
-
 "IMEの状態でステータスラインの色をかえる
 if v:version >= 700
     augroup InsertHook
@@ -129,6 +144,17 @@ match ZenkakuSpace /　/
 " タブを視覚化
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
+
+"編集履歴を再開・閉じてもアンドゥできる
+"要インストール vim_mb (over ver7.3)
+if has('persistent_undo')
+    set undodir=./.vimundo,~/.vimundo
+        augroup vimrc-undofile
+        autocmd!
+        autocmd BufReadPre ~/* setlocal undofile
+    augroup END
+endif
+
 
 
 "--------------------------------------------------------
@@ -167,8 +193,8 @@ function! MyFilename()
   return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
         \ (&ft == 'vimfiler' ? vimfiler#get_status_string() : 
         \  &ft == 'unite' ? unite#get_status_string() : 
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \  &ft == 'vimshell' ? substitute(b:vimshell.current_dir,expand('~'),'~','') : 
+        \ '' != expand('%t') ? expand('%t') : '[No Name]') .
         \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
@@ -207,17 +233,48 @@ if has('vim_starting')
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-"--プラグイン名ここから--
+"-------プラグイン名ここから-------
 
-NeoBundle 'AutoComplPop'
-NeoBundle 'quickrun.vim'
-NeoBundle 'yanktmp.vim'
 NeoBundle 'unite.vim'
+
+"オートコンプリートが便利
+NeoBundle 'AutoComplPop'
+
+"\rでプログラムが実行できる
+NeoBundle 'quickrun.vim'
+
+":Ackコマンドが使える
+NeoBundle 'mileszs/ack.vim'
+
+"スニペット補完
+NeoBundle 'msanders/snipmate.vim'
+
+"コメントアウトが簡単になる
+" ノーマルモード時:gcc
+" ビジュアルモード時:gcc
+NeoBundle 'tComment'
+
+"インデント拡張。コメントや符号の位置が揃えられる
+" 位置を選択後 :\t=
+NeoBundle 'vim-scripts/Align'
+
+"囲み文字の入力補助
+" 囲み文字の削除:ds (delete surround)
+" 囲み文字の変更:cs (change surrount)
+NeoBundle 'surround.vim'
+
+"複数のキーワードにハイライトをつけられる
+NeoBundle 't9md/vim-quickhl'
+
+"別スクリーンでもコピペができる
+NeoBundle 'yanktmp.vim'
+
+"下のステータスバーがかっこよくなる。
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'tpope/vim-fugitive'
 
-"--プラグイン名ここまで--
+"-------プラグイン名ここまで-------
 
 filetype plugin indent on     " required!
 filetype indent on

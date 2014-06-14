@@ -1,3 +1,4 @@
+
 ## bash_profile
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -6,6 +7,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/share:$PATH
 export PATH=/usr/local/share:$PATH
+export PATH=~/git/bin:$PATH
 
 # Encode
 export LANG=ja_JP.utf8
@@ -29,3 +31,8 @@ else
     echo \[\e[31m\]; 
 fi
 \`[\u@\H \w]\[\e[0m\]\n$"
+
+# ホスト名補完＠mac
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi

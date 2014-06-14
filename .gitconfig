@@ -1,10 +1,11 @@
 [user]
 	name = rtakasuke
 	email = takahashi@tamagohan.skr.jp
-
 [alias]
 	st = status
 	ci = commit
 	co = checkout
 	up = pull
 	br = branch
+[core]
+	editor = /usr/bin/vim
