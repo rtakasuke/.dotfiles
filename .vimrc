@@ -11,10 +11,10 @@ set encoding=utf-8
 
 "ファイルフォーマット
 set fileformat=unix
-
-
-"想定される改行の種類
 set fileformats=unix,dos,mac
+
+"保存
+set confirm
 
 
 "Color
@@ -28,6 +28,7 @@ hi VisualNOS cterm=bold,underline ctermfg=247
 set number
 set ruler
 set showmatch
+set showcmd
 syntax on
 
 
@@ -35,6 +36,12 @@ syntax on
 set backspace=indent,eol,start
 set backspace=2
 
+
+"mouse
+set mouse=a
+
+"ペーストモード切り替えをキーバインド
+set pastetoggle=<F11>
 
 "タブ・ウィンドウの移動をキーバインド
 " select tab (shift + ctrl + hjkl)
@@ -62,6 +69,7 @@ filetype plugin on
 
 
 "Search
+set wildmenu
 set incsearch
 set ignorecase
 set smartcase
@@ -195,7 +203,7 @@ endfunction
 set nocompatible "vi 互換をoff
 filetype off
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim.git
+    set runtimepath+=~/.vim/bundle/neobundle.vim
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
