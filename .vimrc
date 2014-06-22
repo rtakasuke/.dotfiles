@@ -233,7 +233,7 @@ if has('vim_starting')
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-"-------プラグイン名ここから-------
+"-----------------プラグイン名ここから-------------------
 
 NeoBundle 'unite.vim'
 
@@ -274,7 +274,8 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'tpope/vim-fugitive'
 
-"-------プラグイン名ここまで-------
+
+"-----------------プラグイン名ここまで-------------------
 
 filetype plugin indent on     " required!
 filetype indent on
