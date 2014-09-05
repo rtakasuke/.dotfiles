@@ -30,6 +30,8 @@ set ruler
 set showmatch
 set showcmd
 syntax on
+" 一部の全角記号のズレ対策
+set ambiwidth=double
 
 
 "backspace key
