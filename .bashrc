@@ -1,4 +1,3 @@
-
 ## bash_profile
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH

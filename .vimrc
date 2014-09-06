@@ -35,7 +35,7 @@ command! Rv source $MYVIMRC
 
 
 "------------------------------------------
-" インデント・色・視覚化
+" 表示・インデント
 "------------------------------------------
 syntax on
 colorscheme desert
@@ -43,8 +43,9 @@ set term=xterm-256color
 set t_Co=256
 set number
 set ruler
-set showmatch
-set showcmd
+set scrolloff=2      " カーソルの上下に最低限表示する行数
+set ambiwidth=double " 一部の全角記号の表示ズレ対策
+set showmatch        " 対応する括弧表示
 
 " インデント
 set autoindent   " 自動インデント
@@ -53,9 +54,6 @@ set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 " for perl
 inoremap # X#
-
-" 一部の全角記号の表示ズレ対策
-set ambiwidth=double
 
 " 全角スペースを視覚化
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
@@ -69,7 +67,7 @@ set listchars=tab:>-,trail:-,extends:>,precedes:<
 "------------------------------------------
 " 検索・補完・ヒストリー
 "------------------------------------------
-set wildmenu
+set wildmenu    " コマンドライン補完を拡張
 set incsearch   " インクリメンタルサーチ
 set ignorecase  " 大文字小文字を区別しない
 set smartcase   " 検索文字列に大文字が含まれていると大文字小文字区別
@@ -89,19 +87,20 @@ hi PmenuSel   ctermbg=red  ctermfg=black
 hi PmenuSbar  ctermbg=darkgray
 hi PmenuThumb ctermbg=lightgray
 
-
 "------------------------------------------
 " カーソル移動・スクロール
 "------------------------------------------
+
+" 行頭・行末移動
+nmap 1 ^
+nmap 9 $
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
-
-" 9で行末に異動
-nmap 9 $
+" カーソルが行頭や行末で止まらないように
+set whichwrap=b,s,h,l,<,>,[,]
 
 " コマンドモードでスペースキーをページダウンに (less風)
 nnoremap <Space> <PageDown>
-
 
 " タブ移動 (shift + ctrl + hjkl)
 map <C-S-h> <ESC>:tabp<CR>

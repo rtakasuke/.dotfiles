@@ -20,7 +20,7 @@
 	ada = add .
 	br  = branch
 	bra = branch -a
-# diff
+	# diff
 	di  = diff
 	dim = diff master
 	dic = diff --cached  # addされているものとdiff
@@ -35,7 +35,7 @@
 	di8 = diff HEAD~~~~~~~~
 	di9 = diff HEAD~~~~~~~~~
 	di10= diff HEAD~~~~~~~~~~
-# log関連
+	# log
 	lg  = log
 	lgs = log --stat  # logに変更されたファイルも一緒に出す
 	lgp = log -p      # diffも一緒に出す
