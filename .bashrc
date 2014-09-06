@@ -14,8 +14,9 @@ export LC_ALL=ja_JP.UTF-8
 
 ## alias
 alias ls='ls -G'
-alias ll='ls -l'
 alias l='ls -l'
+alias ll='ls -l'
+alias la='ls -al'
 alias rm='rm -i'
 alias diff='colordiff' # brew install colordiff
 # for screen
