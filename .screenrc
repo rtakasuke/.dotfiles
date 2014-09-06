@@ -35,3 +35,4 @@ autodetach on
 
 # ステータス設定
 hardstatus alwayslastline # %{b k} %H %{bu dr} |%-w%{=r }%n %t%{-}%+w|# 
+
