@@ -125,7 +125,7 @@ set backspace=2
 " paste mode
 " ptでINSERT&PASTEモードに移行
 " ノーマルモードに戻るとPASTEモードも解除
-nnoremap pt :<C-u>set paste<Return>i
+nnoremap sp :<C-u>set paste<Return>i
 autocmd InsertLeave * set nopaste
 
 " insertモードを抜けるとIMEオフ
