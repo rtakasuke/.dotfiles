@@ -1,4 +1,3 @@
-
 ## bash_profile
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -18,6 +17,7 @@ alias ls='ls -G'
 alias ll='ls -l'
 alias l='ls -l'
 alias rm='rm -i'
+alias diff='colordiff' # brew install colordiff
 # for screen
 alias sc='screen'
 alias scr='screen -r'
