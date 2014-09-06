@@ -14,14 +14,17 @@ export LC_ALL=ja_JP.UTF-8
 
 ## alias
 alias ls='ls -G'
-alias ll='ls -l'
 alias l='ls -l'
+alias ll='ls -l'
+alias la='ls -al'
 alias rm='rm -i'
 alias diff='colordiff' # brew install colordiff
 # for screen
 alias sc='screen'
 alias scr='screen -r'
 alias scd='screen -d'
+# for tmux
+alias tm='tmux'
 
 ## 補完
 #bash-completion
