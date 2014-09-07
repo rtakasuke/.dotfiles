@@ -25,6 +25,8 @@ alias scr='screen -r'
 alias scd='screen -d'
 # for tmux
 alias tm='tmux'
+alias tma='tmux attach'
+alias tmd='tmux detach'
 
 ## 補完
 #bash-completion
