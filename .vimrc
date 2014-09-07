@@ -9,7 +9,6 @@ source ~/.dotfiles/.vimrc.statusline      " ステータスライン
 " 基本設定
 "------------------------------------------
 scriptencoding utf-8 " .vimrc自体のエンコーディング
-set nocompatible     " vi互換をOFF
 set autoread         " 他で書き換えられたら自動で再読み込み
 set noswapfile       " スワップファイル作らない
 set mouse=a          " マウス対応
@@ -33,6 +32,14 @@ filetype plugin indent on
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
+" INSERTモード時にカーソルキーが使えなくなった問題への対処
+" http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
+set nocompatible   " vi互換をOFF
+if !has('gui_running')
+    set notimeout      " マッピングについてタイムアウトしない
+    set ttimeout       " 端末のキーコードについてタイムアウトする
+    set timeoutlen=100 " 100 ミリ秒後にタイムアウトする
+endif
 
 "------------------------------------------
 " 表示・インデント
