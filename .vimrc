@@ -35,11 +35,11 @@ command! Rv source $MYVIMRC
 " INSERTモード時にカーソルキーが使えなくなった問題への対処
 " http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
 set nocompatible   " vi互換をOFF
-if !has('gui_running')
-    set notimeout      " マッピングについてタイムアウトしない
-    set ttimeout       " 端末のキーコードについてタイムアウトする
-    set timeoutlen=100 " 100 ミリ秒後にタイムアウトする
-endif
+imap OA <Up>
+imap OB <Down>
+imap OC <Right>
+imap OD <Left>
+
 
 "------------------------------------------
 " 表示・インデント
