@@ -1,13 +1,3 @@
-## bash_profile
-export PATH=$PATH:/usr/local/mysql/bin
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-## PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/bin:/usr/local/share:$PATH
-export PATH=/usr/local/share:$PATH
-export PATH=~/git/bin:$PATH
-
 # Encode
 export LANG=ja_JP.utf8
 export LC_ALL=ja_JP.UTF-8
