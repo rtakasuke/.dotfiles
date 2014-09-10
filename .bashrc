@@ -17,6 +17,10 @@ alias scd='screen -d'
 alias tm='tmux'
 alias tma='tmux attach'
 alias tmd='tmux detach'
+# tmuxのコピーモードのバッファをクリップボードにコピーするためのもの
+TMUX_BUFFER_OUT_FILE="~/.tmux_buffer_out.txt"
+alias bl='tmux saveb -b 0 ${TMUX_BUFFER_OUT_FILE} && echo >> ${TMUX_BUFFER_OUT_FILE}'
+alias br='cat ${TMUX_BUFFER_OUT_FILE}'
 
 ## 補完
 #bash-completion
