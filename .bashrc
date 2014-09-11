@@ -1,13 +1,3 @@
-## bash_profile
-export PATH=$PATH:/usr/local/mysql/bin
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-## PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/usr/local/bin:/usr/local/share:$PATH
-export PATH=/usr/local/share:$PATH
-export PATH=~/git/bin:$PATH
-
 # Encode
 export LANG=ja_JP.utf8
 export LC_ALL=ja_JP.UTF-8
@@ -27,6 +17,10 @@ alias scd='screen -d'
 alias tm='tmux'
 alias tma='tmux attach'
 alias tmd='tmux detach'
+# tmuxのコピーモードのバッファをクリップボードにコピーするためのもの
+TMUX_BUFFER_OUT_FILE="~/.tmux_buffer_out.txt"
+alias bl='tmux saveb -b 0 ${TMUX_BUFFER_OUT_FILE} && echo >> ${TMUX_BUFFER_OUT_FILE}'
+alias br='cat ${TMUX_BUFFER_OUT_FILE}'
 
 ## 補完
 #bash-completion
