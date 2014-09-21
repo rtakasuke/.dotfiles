@@ -3,6 +3,7 @@ export LANG=ja_JP.utf8
 export LC_ALL=ja_JP.UTF-8
 
 ## alias
+alias cdh='cd ~'
 alias ls='ls -G'
 alias l='ls -l'
 alias ll='ls -l'
@@ -18,7 +19,7 @@ alias tm='tmux'
 alias tma='tmux attach'
 alias tmd='tmux detach'
 # tmuxのコピーモードのバッファをクリップボードにコピーするためのもの
-TMUX_BUFFER_OUT_FILE="~/.tmux_buffer_out.txt"
+TMUX_BUFFER_OUT_FILE="${HOME}/.tmux_buffer_out.txt"
 alias bl='tmux saveb -b 0 ${TMUX_BUFFER_OUT_FILE} && echo >> ${TMUX_BUFFER_OUT_FILE}'
 alias br='cat ${TMUX_BUFFER_OUT_FILE}'
 

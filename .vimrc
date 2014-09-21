@@ -11,7 +11,7 @@ source ~/.dotfiles/.vimrc.statusline      " ステータスライン
 scriptencoding utf-8 " .vimrc自体のエンコーディング
 set autoread         " 他で書き換えられたら自動で再読み込み
 set noswapfile       " スワップファイル作らない
-set mouse=a          " マウス対応
+"set mouse=a          " マウス対応
 
 " 保存するとき
 set confirm
@@ -131,7 +131,7 @@ set backspace=2
 " paste mode
 " ptでINSERT&PASTEモードに移行
 " ノーマルモードに戻るとPASTEモードも解除
-nnoremap sp :<C-u>set paste<Return>i
+nnoremap gp :<C-u>set paste<Return>i
 autocmd InsertLeave * set nopaste
 
 " insertモードを抜けるとIMEオフ

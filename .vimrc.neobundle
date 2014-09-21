@@ -2,7 +2,7 @@
 " NeoBundle & PluginSettings
 "------------------------------------------------------------
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim.git
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
@@ -30,7 +30,6 @@ NeoBundle 'tComment'
 " 囲み文字の削除:ds (delete surround)
 " 囲み文字の変更:cs (change surrount)
 NeoBundle 'surround.vim'
-
 
 "------------------------------------------------------------
 " [L] Align : 整形・桁揃え
