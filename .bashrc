@@ -3,6 +3,7 @@ export LANG=ja_JP.utf8
 export LC_ALL=ja_JP.UTF-8
 
 ## alias
+alias dev='ssh rtakasuke.com'
 alias cdh='cd ~'
 alias ls='ls -G'
 alias l='ls -l'
