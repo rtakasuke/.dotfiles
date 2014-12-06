@@ -58,5 +58,6 @@ nmap <space>j <Plug>(quickhl-match)
 "  sp : paste
 "------------------------------------------------------------
 NeoBundle 'yanktmp.vim'
-map <silent> sy :call YanktmpYanc()<CR>
-map <silent> sp :call YanctmpPaste_p<CR>
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>

@@ -1,8 +1,8 @@
 "------------------------------------------
 " includes
 "------------------------------------------
-source ~/.dotfiles/.vimrc.neobundle       " Neobundle & PluginSettings
-source ~/.dotfiles/.vimrc.statusline      " ステータスライン
+source ~/dotfiles/.vimrc.neobundle       " Neobundle & PluginSettings
+source ~/dotfiles/.vimrc.statusline      " ステータスライン
 
 
 "------------------------------------------
