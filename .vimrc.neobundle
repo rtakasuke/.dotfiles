@@ -1,63 +1,65 @@
 "------------------------------------------------------------
-" NeoBundle & PluginSettings
+" NeoBundle
 "------------------------------------------------------------
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-NeoBundle 'unite.vim'
 
-"[H] オートコンプリート
+"------------------------------------------------------------
+" 精鋭たち
+"------------------------------------------------------------
+
+" Unite
+NeoBundle 'unite.vim'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+
+" オートコンプリート
 NeoBundle 'AutoComplPop'
 
-"[L] \rでプログラム実行できる
-NeoBundle 'quickrun.vim'
-
-"[L] :Ackでack検索ができる
+" :Ackでack検索ができる
 NeoBundle 'mileszs/ack.vim'
 
-"[L] スニペット補完
-NeoBundle 'msanders/snipmate.vim'
-
-"[H] コメントアウトが簡単になる
+" コメントアウトが簡単になる
 " ノーマルモード時:gcc
 " ビジュアルモード時:gcc
 NeoBundle 'tComment'
 
-
-"[L] 囲み文字の入力補助
-" 囲み文字の削除:ds (delete surround)
-" 囲み文字の変更:cs (change surrount)
-NeoBundle 'surround.vim'
-
-"------------------------------------------------------------
-" [L] Align : 整形・桁揃え
-" 位置を選択後 :\t=
-"------------------------------------------------------------
-NeoBundle 'vim-scripts/Align'
-let g:Align_xstrlen = 3 " 日本語対応
-
-
-"------------------------------------------------------------
-" [L] vim-quickhl : 複数のキーワードにハイライトをつけられる
-"  <space>m : 単語ハイライト/解除
-"  <space>M : ハイライト全解除
-"------------------------------------------------------------
-NeoBundle 't9md/vim-quickhl'
-nmap <space>m <Plug>(quickhl-toggle)
-xmap <space>m <Plug>(quickhl-toggle)
-nmap <space>M <Plug>(quickhl-reset)
-xmap <space>M <Plug>(quickhl-reset)
-nmap <space>j <Plug>(quickhl-match)
-
-
-"------------------------------------------------------------
-" [H] yanktmp.vim : 違うスクリーンでコピペができるよ
+" yanktmp.vim : 違うスクリーンでコピペができるよ
 "  sy : yanc
 "  sp : paste
-"------------------------------------------------------------
 NeoBundle 'yanktmp.vim'
 map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
+
+
+"------------------------------------------------------------
+" ベンチメンバー
+"------------------------------------------------------------
+
+" \rでプログラム実行できる
+NeoBundle 'quickrun.vim'
+
+
+" 囲み文字の入力補助
+" 囲み文字の削除:ds (delete surround)
+" 囲み文字の変更:cs (change surrount)
+NeoBundle 'surround.vim'
+
+" スニペット補完
+NeoBundle 'msanders/snipmate.vim'
+
+" Align : 整形・桁揃え
+" 位置を選択後 :\t=
+NeoBundle 'vim-scripts/Align'
+let g:Align_xstrlen = 3 " 日本語対応
+
