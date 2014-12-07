@@ -22,6 +22,11 @@ nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
+" NERDTree
+NeoBundle 'scrooloose/nerdtree'
+let NERDTreeShowHidden = 1
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 " オートコンプリート
 NeoBundle 'AutoComplPop'
 

@@ -115,6 +115,9 @@ imap OC <Right>
 imap OD <Left>
 
 " 行頭・行末移動
+"  Normal mode : <--      ^  $      -->
+"  Normal mode : <--      1  9      -->
+"  Insert mode : <-- Ctrl+a  Ctrl+e -->
 nmap 1 ^
 nmap 9 $
 inoremap <C-e> <End>
