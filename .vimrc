@@ -62,10 +62,10 @@ set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
 
 " vimdiff
-hi DiffAdd    ctermfg=black ctermbg=2
-hi DiffChange ctermfg=black ctermbg=3
-hi DiffDelete ctermfg=black ctermbg=6
-hi DiffText   ctermfg=black ctermbg=7
+hi DiffAdd    ctermbg=2 ctermfg=black
+hi DiffChange ctermbg=3 ctermfg=black
+hi DiffDelete ctermbg=6 ctermfg=black
+hi DiffText   ctermbg=7 ctermfg=black
 
 " ポップアップの色
 hi Pmenu      ctermbg=gray ctermfg=black
@@ -129,9 +129,6 @@ vnoremap v $h
 " カーソルが行頭や行末で止まらないように
 set whichwrap=b,s,h,l,<,>,[,]
 
-" コマンドモードでスペースキーをページダウンに (less風)
-nnoremap <Space> <PageDown>
-
 " タブ移動 (shift + ctrl + hjkl)
 map <C-S-h> <ESC>:tabp<CR>
 map <C-S-l> <ESC>:tabn<CR>
@@ -165,18 +162,11 @@ autocmd InsertLeave * set nopaste
 " jjでinsertモードを抜ける
 inoremap jj <Esc>
 
-" insertモードを抜けるとIMEオフ
-set noimdisable
-set iminsert=0 imsearch=0
-set noimcmdline
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
-
-" 編集履歴を再開・閉じてもアンドゥできる
-" 要インストール vim_mb (over ver7.3)
+" ファイル閉じてもアンドゥできる
 if has('persistent_undo')
-    set undodir=./.vimundo,~/.vimundo
-        augroup vimrc-undofile
-        autocmd!
-        autocmd BufReadPre ~/* setlocal undofile
-    augroup END
+    set undodir=~/.vim/undo
+    set undofile
 endif
+
+" ファイル閉じても同じ位置から編集再開
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
