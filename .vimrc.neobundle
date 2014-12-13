@@ -11,6 +11,31 @@ endif
 " ファイル操作・検索
 "------------------------------------------------------------
 
+NeoBundle 'unite.vim'
+nnoremap [unite] <Nop>
+nmap <Space>f [unite]
+let g:unite_enable_start_insert = 0              " 起動時はノーマルモード
+let g:unite_source_file_mru_limit = 50           " 最近開いたファイル
+let g:unite_source_file_mru_filename_format = '' " 表示スピード高速化
+" <SP>ff : ファイル一覧
+" <SP>fb : バッファ一覧
+" <SP>fr : レジスタ一覧
+" <SP>fm : 最近使ったファイル
+" <SP>fc : ブックマーク参照
+" <SP>fa : ブックマーク追加
+" <SP>fg : perlのグローバルモジュール一覧
+" <SP>fl : perlのローカルモジュール一覧
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+"  for perl module
+NeoBundle 'y-uuki/unite-perl-module.vim'
+nnoremap <silent> [unite]g :<C-u>Unite perl/global<CR>
+nnoremap <silent> [unite]l :<C-u>Unite perl/local<CR>
+
 " :Ack : ack検索ができる
 NeoBundle 'mileszs/ack.vim'
 
@@ -18,20 +43,6 @@ NeoBundle 'mileszs/ack.vim'
 NeoBundle 'scrooloose/nerdtree'
 let NERDTreeShowHidden = 1
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-" ゆないと
-NeoBundle 'unite.vim'
-nnoremap [unite] <Nop>
-nmap <Space>f [unite]
-let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_limit = 50
-let g:unite_source_file_mru_filename_format = '' " 表示スピードが高速化される
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 
 
 "------------------------------------------------------------
