@@ -1,12 +1,12 @@
 "------------------------------------------
 " includes
 "------------------------------------------
-source ~/dotfiles/.vimrc.neobundle  " Neobundle & PluginSettings
+source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
 source ~/dotfiles/.vimrc.statusline " ステータスライン
 
 
 "------------------------------------------
-" ファイル・エンコード
+" ファイル操作・エンコード
 "------------------------------------------
 scriptencoding utf-8 " .vimrc自体のエンコーディング
 set autoread         " 他で書き換えられたら自動で再読み込み
@@ -31,7 +31,7 @@ filetype on
 filetype indent on
 filetype plugin indent on
 
-" :Ev/:Rvでvimrcの編集と反映
+" :Ev / :Rv : .vimrcの編集と反映
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
@@ -45,7 +45,7 @@ set term=xterm-256color
 set t_Co=256
 set number
 set ruler
-set scrolloff=2      " カーソルの上下に最低限表示する行数
+set scrolloff=4      " カーソルの上下に最低限表示する行数
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 
 " 対応括弧のハイライト
@@ -62,10 +62,10 @@ set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
 
 " vimdiff
-hi DiffAdd    ctermbg=2 ctermfg=black
-hi DiffChange ctermbg=3 ctermfg=black
-hi DiffDelete ctermbg=6 ctermfg=black
-hi DiffText   ctermbg=7 ctermfg=black
+hi DiffAdd    ctermbg=65   ctermfg=black
+hi DiffChange ctermbg=101  ctermfg=black
+hi DiffDelete ctermbg=96   ctermfg=black
+hi DiffText   ctermbg=248  ctermfg=black
 
 " ポップアップの色
 hi Pmenu      ctermbg=gray ctermfg=black
@@ -123,7 +123,7 @@ nmap 9 $
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
 
-" vを二回で行末まで選択
+" vv : Visualモードに移行して行末まで選択
 vnoremap v $h
 
 " カーソルが行頭や行末で止まらないように
@@ -145,24 +145,23 @@ map <C-j>   <ESC><C-W>j<CR>
 "------------------------------------------
 
 " インデント
-set autoindent   " 自動インデント
-set smartindent  " 改行時に前行のインデントを引き継ぐ
+set autoindent
+set smartindent
 set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
-set shiftround   " インデントをshiftwidthの倍数に丸める
-" for perl
+set shiftround
+"  for perl
 inoremap # X#
 
-" paste mode
-" ptでINSERT&PASTEモードに移行
-" ノーマルモードに戻るとPASTEモードも解除
+"  gp : INSERT(PASTE)モードに移行
+"  ノーマルモードに戻るとPASTEモードも解除
 nnoremap gp :<C-u>set paste<Return>i
 autocmd InsertLeave * set nopaste
 
-" jjでinsertモードを抜ける
+" jj : Insertモードを抜ける
 inoremap jj <Esc>
 
-" ファイル閉じてもアンドゥできる
+" ファイル閉じてもundoできる
 if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile

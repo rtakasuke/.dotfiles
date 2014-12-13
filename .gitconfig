@@ -20,11 +20,10 @@
 	ada = add .
 	br  = branch
 	bra = branch -a
-	# diff
 	di  = diff
 	dim = diff master
 	dic = diff --cached  # addされているものとdiff
-	dis = diff --staged  # 同上(1.6.1以降) # HEADから1〜10前とdiff
+	dis = diff --staged  # 同上(1.6.1以降)
 	di1 = diff HEAD~
 	di2 = diff HEAD~~
 	di3 = diff HEAD~~~
@@ -35,7 +34,6 @@
 	di8 = diff HEAD~~~~~~~~
 	di9 = diff HEAD~~~~~~~~~
 	di10= diff HEAD~~~~~~~~~~
-	# log
 	lg  = log
 	lgs = log --stat  # logに変更されたファイルも一緒に出す
 	lgp = log -p      # diffも一緒に出す
