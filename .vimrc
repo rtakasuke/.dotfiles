@@ -23,6 +23,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 
 " 開くとき
+set hidden           " 保存されていないファイルがあっても別ファイルを開ける
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,utf-16,ucs-2-internal,ucs-2,cp932,shift-jis,euc-jp,japan
 
@@ -45,7 +46,8 @@ set term=xterm-256color
 set t_Co=256
 set number
 set ruler
-set scrolloff=4      " カーソルの上下に最低限表示する行数
+set scrolloff=8      " 上下端に視界を確保
+set sidescrolloff=8  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 
 " 対応括弧のハイライト
@@ -53,13 +55,13 @@ set showmatch
 set matchpairs& matchpairs+=<:>
 set matchtime=3
 
-" 全角スペースを視覚化
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
-match ZenkakuSpace /　/
-
 " タブ・スペースを視覚化
 set list
 set listchars=tab:>-,trail:-,extends:>,precedes:<
+
+" 全角スペースを視覚化
+highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+match ZenkakuSpace /　/
 
 " vimdiff
 hi DiffAdd    ctermbg=65   ctermfg=black

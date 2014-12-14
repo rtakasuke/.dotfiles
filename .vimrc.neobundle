@@ -8,23 +8,24 @@ endif
 
 
 "------------------------------------------------------------
-" ファイル操作・検索
+" ファイル操作・ファイル検索 (ほぼunite系)
 "------------------------------------------------------------
 
+" ゆないと
+"  <Space>ff : ファイル一覧
+"  <Space>fb : バッファ一覧
+"  <Space>fr : レジスタ一覧
+"  <Space>fm : 最近使ったファイル
+"  <Space>fc : ブックマーク参照
+"  <Space>fa : ブックマーク追加
+"  <Space>fg : perlのグローバルモジュール一覧
+"  <Space>fl : perlのローカルモジュール一覧
 NeoBundle 'unite.vim'
 nnoremap [unite] <Nop>
 nmap <Space>f [unite]
 let g:unite_enable_start_insert = 0              " 起動時はノーマルモード
 let g:unite_source_file_mru_limit = 50           " 最近開いたファイル
 let g:unite_source_file_mru_filename_format = '' " 表示スピード高速化
-" <SP>ff : ファイル一覧
-" <SP>fb : バッファ一覧
-" <SP>fr : レジスタ一覧
-" <SP>fm : 最近使ったファイル
-" <SP>fc : ブックマーク参照
-" <SP>fa : ブックマーク追加
-" <SP>fg : perlのグローバルモジュール一覧
-" <SP>fl : perlのローカルモジュール一覧
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
@@ -35,13 +36,15 @@ nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 NeoBundle 'y-uuki/unite-perl-module.vim'
 nnoremap <silent> [unite]g :<C-u>Unite perl/global<CR>
 nnoremap <silent> [unite]l :<C-u>Unite perl/local<CR>
+" :Unite colorscheme : カラースキームの動作確認
+NeoBundle 'ujihisa/unite-colorscheme'
 
 " :Ack : ack検索ができる
 NeoBundle 'mileszs/ack.vim'
 
 " C-e : ディレクトリをツリー表示
 NeoBundle 'scrooloose/nerdtree'
-let NERDTreeShowHidden = 1
+let      NERDTreeShowHidden = 1
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 
@@ -50,16 +53,16 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "------------------------------------------------------------
 
 " 楽々カーソル移動
-"  ;k : 上方行移動
-"  ;j : 下方行移動
-"  ;w : 後方単語移動
-"  ;b : 前方単語移動
+"  <Space>k : 上行移動
+"  <Space>j : 下行移動
+"  <Space>w : 前方単語移動
+"  <Space>b : 後方単語移動
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-let g:EasyMotion_leader_key=";"
+let g:EasyMotion_leader_key="<Space>"
 let g:EasyMotion_grouping=1
-hi EasyMotionTarget ctermbg=none ctermfg=red
-hi EasyMotionShade  ctermbg=none ctermfg=blue
+hi  EasyMotionTarget ctermbg=none ctermfg=red
+hi  EasyMotionShade  ctermbg=none ctermfg=blue
 
 " %による対応括弧へのジャンプ機能を拡張
 NeoBundle 'tmhedberg/matchit'
@@ -87,7 +90,7 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
-"  オムニ補完
+"  omni補完
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
@@ -96,6 +99,12 @@ autocmd FileType php           setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType perl          setlocal omnifunc=perlcomplete#CompletePERL
 autocmd FileType python        setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType c             setlocal omnifunc=ccomplete#Complete
+
+
+"------------------------------------------------------------
+" colorscheme
+"------------------------------------------------------------
+NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 
 
 "------------------------------------------------------------
@@ -117,6 +126,9 @@ NeoBundle 'yanktmp.vim'
 map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
+
+" 選択範囲を('*'や'#'で)検索
+NeoBundle 'thinca/vim-visualstar'
 
 " vimの非同期実行に必要。多くのプラグインが依存しているのでとりあえず。
 " バージョンアップのたびにmakeする必要があるのでこんな書き方になってる。

@@ -8,7 +8,9 @@ NeoBundle 'tpope/vim-fugitive'
 set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
 set laststatus=2
 
+
 "IMEの状態でステータスラインの色をかえる
+"TODO 動いてない気がする
 if v:version >= 700
     augroup InsertHook
     autocmd!

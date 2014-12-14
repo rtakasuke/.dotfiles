@@ -5,7 +5,6 @@ export LC_ALL=ja_JP.UTF-8
 ## alias
 alias dev='ssh rtakasuke.com'
 alias cdh='cd ~'
-alias ls='ls -G'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -al'
@@ -30,8 +29,9 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 # git-completion
-source /usr/local/git/contrib/completion/git-prompt.sh
-source /usr/local/git/contrib/completion/git-completion.bash
+# https://github.com/git/git/tree/master/contrib/completion
+source ~/.git-completion.bash
+source ~/.git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## prompt
