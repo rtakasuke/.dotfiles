@@ -24,7 +24,7 @@ endif
 "  <Space>fl : perlのローカルモジュール一覧
 NeoBundle 'unite.vim'
 nnoremap [unite] <Nop>
-nmap <Space>f [unite]
+nmap ,f [unite]
 let g:unite_enable_start_insert = 0              " 起動時はノーマルモード
 let g:unite_source_file_mru_limit = 50           " 最近開いたファイル
 let g:unite_source_file_mru_filename_format = '' " 表示スピード高速化
@@ -59,6 +59,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "  <Space>j : 下行移動
 "  <Space>w : 前方単語移動
 "  <Space>b : 後方単語移動
+"  <Space>s : 1文字検索
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_leader_key="<Space>"
@@ -113,10 +114,8 @@ NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 " その他の精鋭たち
 "------------------------------------------------------------
 
-" リファレンス
-"  調べたい単語の上で Shift+k
-NeoBundle 'vim-ref'
-NeoBundle 'perldoc-vim'
+" \rでプログラム実行できる
+NeoBundle 'quickrun.vim'
 
 " (normal/visual) gcc : コメントアウト
 NeoBundle 'tComment'
@@ -149,10 +148,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 " 補欠メンバー
 "------------------------------------------------------------
 
-" \rでプログラム実行できる
-NeoBundle 'quickrun.vim'
-
-
 " 囲み文字の入力補助
 " 囲み文字の削除:ds (delete surround)
 " 囲み文字の変更:cs (change surrount)
@@ -165,5 +160,4 @@ NeoBundle 'msanders/snipmate.vim'
 " 位置を選択後 :\t=
 NeoBundle 'vim-scripts/Align'
 let g:Align_xstrlen = 3 " 日本語対応
-
 
