@@ -13,6 +13,7 @@ endif
 " ファイル操作・ファイル検索 (ほぼunite系)
 "------------------------------------------------------------
 
+"
 " ゆないとfamily
 "  ,ff : ファイル一覧
 "  ,fb : バッファ一覧
@@ -41,20 +42,26 @@ nnoremap <silent> [unite]l :<C-u>Unite perl/local<CR>
 " :Unite colorscheme : カラースキームの動作確認
 NeoBundle 'ujihisa/unite-colorscheme'
 
+"
 " vim起動時に最近開いたファイルとか表示
 NeoBundle 'mhinz/vim-startify'
 let g:startify_custom_header =
-  \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
+            \ map(['Vim '.v:version.' (*´ω｀*)']+
+            \ split(system('date'), '\n'), '"   ". v:val')+ ['','']
 let g:startify_custom_indices = [
-            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h',
-            \ 'i', 'l', 'm', 'n', 'o', 'p', 'r',
-            \ 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-            \ ]
-let g:startify_bookmarks = ['~/.vimrc']
+            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 'l', 'm',
+            \ 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'w', 'x',
+            \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+            \ 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            \ 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            \  ]
+let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc']
 
+"
 " :Ack : ack検索ができる
 NeoBundle 'mileszs/ack.vim'
 
+"
 " C-e : ディレクトリをツリー表示
 NeoBundle 'scrooloose/nerdtree'
 let      NERDTreeShowHidden = 1
@@ -65,6 +72,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " カーソル移動・スクロール
 "------------------------------------------------------------
 
+"
 " 楽々カーソル移動
 "  <Space>k : 上行移動
 "  <Space>j : 下行移動
@@ -78,6 +86,7 @@ let g:EasyMotion_grouping=1
 hi  EasyMotionTarget ctermbg=none ctermfg=red
 hi  EasyMotionShade  ctermbg=none ctermfg=blue
 
+"
 " %による対応括弧へのジャンプ機能を拡張
 NeoBundle 'tmhedberg/matchit'
 
@@ -86,18 +95,19 @@ NeoBundle 'tmhedberg/matchit'
 " オートコンプリート
 "------------------------------------------------------------
 
-NeoBundle 'Shougo/neocomplcache'
-let g:acp_enableAtStartup=0                      " (インストールされているのなら)AutoComplPopを無効化
-let g:neocomplcache_enable_at_startup=1          " vim起動時に有効化
-let g:neocomplcache_enable_smart_case=1          " 大文字、小文字を区別しない
-let g:neocomplcache_enable_underbar_completion=1 " アンダースコア区切りの補完
-" キーバインド
+"
+" 定番の
 "  C-g  : 前回行われた補完をキャンセル
 "  C-l  : 補完候補のなかから共通する部分を補完。シェルの補完のような動き
 "  C-h  : ポップアップを閉じる
 "  <BS> : ポップアップを閉じる
 "  C-y  : 選択している候補を確定する
 "  C-e  : 選択している候補をキャンセルして閉じる
+NeoBundle 'Shougo/neocomplcache'
+let g:acp_enableAtStartup=0                      " (インストールされているのなら)AutoComplPopを無効化
+let g:neocomplcache_enable_at_startup=1          " vim起動時に有効化
+let g:neocomplcache_enable_smart_case=1          " 大文字、小文字を区別しない
+let g:neocomplcache_enable_underbar_completion=1 " アンダースコア区切りの補完
 inoremap <expr><C-g> neocomplcache#undo_completion()
 inoremap <expr><C-l> neocomplcache#complete_common_string()
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
@@ -125,12 +135,15 @@ NeoBundle 'vim-scripts/Colour-Sampler-Pack'
 " その他の精鋭たち
 "------------------------------------------------------------
 
+"
 " \rでプログラム実行できる
 NeoBundle 'quickrun.vim'
 
+"
 " (normal/visual) gcc : コメントアウト
 NeoBundle 'tComment'
 
+"
 " 違うスクリーンでコピペができるよ
 "  sy : yanc
 "  sp : paste
@@ -139,9 +152,11 @@ map <silent> sy :call YanktmpYank()<CR>
 map <silent> sp :call YanktmpPaste_p()<CR>
 map <silent> sP :call YanktmpPaste_P()<CR>
 
+"
 " 選択範囲を('*'や'#'で)検索
 NeoBundle 'thinca/vim-visualstar'
 
+"
 " vimの非同期実行に必要。多くのプラグインが依存しているのでとりあえず。
 " バージョンアップのたびにmakeする必要があるのでこんな書き方になってる。
 NeoBundle 'Shougo/vimproc.vim', {
@@ -159,14 +174,17 @@ NeoBundle 'Shougo/vimproc.vim', {
 " 補欠メンバー
 "------------------------------------------------------------
 
+"
 " 囲み文字の入力補助
 " 囲み文字の削除:ds (delete surround)
 " 囲み文字の変更:cs (change surrount)
 NeoBundle 'surround.vim'
 
+"
 " スニペット補完
 NeoBundle 'msanders/snipmate.vim'
 
+"
 " Align : 整形・桁揃え
 " 位置を選択後 :\t=
 NeoBundle 'vim-scripts/Align'
