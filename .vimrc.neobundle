@@ -13,15 +13,15 @@ endif
 " ファイル操作・ファイル検索 (ほぼunite系)
 "------------------------------------------------------------
 
-" ゆないと
-"  <Space>ff : ファイル一覧
-"  <Space>fb : バッファ一覧
-"  <Space>fr : レジスタ一覧
-"  <Space>fm : 最近使ったファイル
-"  <Space>fc : ブックマーク参照
-"  <Space>fa : ブックマーク追加
-"  <Space>fg : perlのグローバルモジュール一覧
-"  <Space>fl : perlのローカルモジュール一覧
+" ゆないとfamily
+"  ,ff : ファイル一覧
+"  ,fb : バッファ一覧
+"  ,fr : レジスタ一覧
+"  ,fm : 最近使ったファイル
+"  ,fc : ブックマーク参照
+"  ,fa : ブックマーク追加
+"  ,fg : perlのグローバルモジュール一覧
+"  ,fl : perlのローカルモジュール一覧
 NeoBundle 'unite.vim'
 nnoremap [unite] <Nop>
 nmap ,f [unite]
@@ -40,6 +40,17 @@ nnoremap <silent> [unite]g :<C-u>Unite perl/global<CR>
 nnoremap <silent> [unite]l :<C-u>Unite perl/local<CR>
 " :Unite colorscheme : カラースキームの動作確認
 NeoBundle 'ujihisa/unite-colorscheme'
+
+" vim起動時に最近開いたファイルとか表示
+NeoBundle 'mhinz/vim-startify'
+let g:startify_custom_header =
+  \ map(split(system('date'), '\n'), '"   ". v:val') + ['','']
+let g:startify_custom_indices = [
+            \ 'a', 'b', 'c', 'd', 'f', 'g', 'h',
+            \ 'i', 'l', 'm', 'n', 'o', 'p', 'r',
+            \ 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            \ ]
+let g:startify_bookmarks = ['~/.vimrc']
 
 " :Ack : ack検索ができる
 NeoBundle 'mileszs/ack.vim'
