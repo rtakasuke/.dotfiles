@@ -131,6 +131,9 @@ NeoBundle 'quickrun.vim'
 " (normal/visual) gcc : コメントアウト
 NeoBundle 'tComment'
 
+" 変更差分を可視化
+NeoBundle 'airblade/vim-gitgutter'
+
 " 違うスクリーンでコピペができるよ
 "  sy : yanc
 "  sp : paste
