@@ -31,6 +31,15 @@ filetype on
 filetype indent on
 filetype plugin indent on
 
+" ファイル閉じてもundoできる
+if has('persistent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif
+
+" ファイル閉じても同じ位置から編集再開
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+
 " タブ
 "  tt  : 新規
 "  tc  : 閉じる
@@ -49,8 +58,8 @@ command! Rv source $MYVIMRC
 "------------------------------------------
 " 表示
 "------------------------------------------
-syntax on
 colorscheme desert
+syntax on
 set term=xterm-256color
 set t_Co=256
 set number
@@ -59,11 +68,11 @@ set scrolloff=8      " 上下端に視界を確保
 set sidescrolloff=8  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 
-" カーソル行(列)の背景色
+" カーソル行(列)をハイライト
 set cursorline
 set cursorcolumn
-hi CursorLine   term=reverse cterm=none ctermbg=237
-hi CursorColumn term=reverse cterm=none ctermbg=237
+hi  CursorLine   term=reverse cterm=none ctermbg=237
+hi  CursorColumn term=reverse cterm=none ctermbg=237
 
 " 対応括弧のハイライト
 set showmatch
@@ -71,12 +80,10 @@ set matchpairs& matchpairs+=<:>
 set matchtime=3
 hi  MatchParen cterm=bold ctermbg=8
 
-" タブ・スペースを視覚化
-set list
-set listchars=tab:>-,trail:-,extends:>,precedes:<
-
-" 全角スペースを視覚化
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
+" タブ・スペース視覚化
+set   list
+set   listchars=tab:>-,trail:-,extends:>,precedes:<
+hi    ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
 match ZenkakuSpace /　/
 
 " vimdiff
@@ -91,11 +98,8 @@ hi PmenuSel   ctermbg=red  ctermfg=black
 hi PmenuSbar  ctermbg=darkgray
 hi PmenuThumb ctermbg=lightgray
 
-" おりたたみ(fold)
-" 行頭で h を押すと折畳を閉じる
-" 折畳上で l を押すと折畳を開く
-" 行頭で h を押すと選択範囲に含まれる折畳を閉じる
-" 折畳上で l を押すと選択範囲に含まれる折畳を開く
+" fold(おりたたみ)
+"  h / l : とじる / ひらく
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
@@ -113,11 +117,11 @@ set wrapscan    " 最後まで検索したら先頭に戻る。
 set hlsearch    " 検索ハイライト
 
 "Escを２回押下で検索ハイライトを解除
-nmap <Esc><Esc> :nohlsearch<CR>
+nnoremap <Esc><Esc> :nohlsearch<CR>
 
 "ワードサーチ時にいきなり次に飛ばないように
-nmap * *N
-nmap # #N
+nnoremap * *N
+nnoremap # #N
 
 
 "------------------------------------------
@@ -129,14 +133,12 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 
 " 行頭・行末移動
-"  Normal mode : "^" or "1" or "<Space>h" <-- --> "$" or "9" or "<Space>l"
-"  Insert mode : "C+a" <-- --> "C+e"
-nmap 1 ^
-nmap 9 $
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
+nnoremap 1 ^
+nnoremap 9 $
 nnoremap <Space>h  ^
 nnoremap <Space>l  $
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
 
 " vv : Visualモードに移行して行末まで選択
 vnoremap v $h
@@ -196,24 +198,16 @@ inoremap jj <Esc>
 " Y : 行末までヤンク
 map Y y$
 
-" INSERTモードに移行せずに空行を挿入
+" 空行を挿入
 "  10<Space>o : 10行挿入
-nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap <Space>o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 
 " gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
 nnoremap gp :<C-u>set paste<Return>i
-autocmd InsertLeave * set nopaste
+autocmd  InsertLeave * set nopaste
 
 " gs : らくらく置換
-nnoremap gs  :<C-u>%s//g<Left><Left>
-vnoremap gs  :s//g<Left><Left>
+nnoremap gs :<C-u>%s//g<Left><Left>
+vnoremap gs :s//g<Left><Left>
 
-" ファイル閉じてもundoできる
-if has('persistent_undo')
-    set undodir=~/.vim/undo
-    set undofile
-endif
-
-" ファイル閉じても同じ位置から編集再開
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
