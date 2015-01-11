@@ -21,7 +21,6 @@ set fileencoding=utf-8
 " w!! でスーパーユーザーとして保存（sudoが使える環境限定）
 cmap w!! w !sudo tee > /dev/null %
 
-
 " 開くとき
 set hidden           " 保存されていないファイルがあっても別ファイルを開ける
 set fileformats=unix,dos,mac
@@ -31,6 +30,16 @@ set fileencodings=utf-8,iso-2022-jp,utf-16,ucs-2-internal,ucs-2,cp932,shift-jis,
 filetype on
 filetype indent on
 filetype plugin indent on
+
+" タブ
+"  tt  : 新規
+"  tc  : 閉じる
+"  C-n : 次のタブ
+"  C-p : 前のタブ
+nnoremap <silent> tt  :<C-u>tabe<CR>
+nnoremap <silent> tc  :<C-u>tabclose<CR>
+nnoremap <C-p>    gT
+nnoremap <C-n>    gt
 
 " :Ev / :Rv : .vimrcの編集と反映
 command! Ev edit $MYVIMRC
@@ -115,22 +124,19 @@ nmap # #N
 " カーソル移動・スクロール
 "------------------------------------------
 
-" INSERTモード時にカーソルキーが使えなくなった問題への対処
-" http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
-set nocompatible   " vi互換をOFF
-imap OA <Up>
-imap OB <Down>
-imap OC <Right>
-imap OD <Left>
+" 見た目上の行単位で移動(折り返していたら別の行的な動き)
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
 " 行頭・行末移動
-"  Normal mode : <--      ^  $      -->
-"  Normal mode : <--      1  9      -->
-"  Insert mode : <-- Ctrl+a  Ctrl+e -->
+"  Normal mode : "^" or "1" or "<Space>h" <-- --> "$" or "9" or "<Space>l"
+"  Insert mode : "C+a" <-- --> "Ctrl+e"
 nmap 1 ^
 nmap 9 $
 inoremap <C-e> <End>
 inoremap <C-a> <Home>
+nnoremap <Space>h  ^
+nnoremap <Space>l  $
 
 " vv : Visualモードに移行して行末まで選択
 vnoremap v $h
@@ -141,6 +147,10 @@ set whichwrap=b,s,h,l,<,>,[,]
 "矩形選択で行末より後ろも選択できる
 set virtualedit=block
 
+" <TAB> : 対応ペアにジャンプ
+nnoremap <TAB> %
+vnoremap <TAB> %
+
 " タブ移動 (shift + ctrl + hjkl)
 map <C-S-h> <ESC>:tabp<CR>
 map <C-S-l> <ESC>:tabn<CR>
@@ -150,6 +160,21 @@ map <C-h>   <ESC><C-W>h<CR>
 map <C-l>   <ESC><C-W>l<CR>
 map <C-k>   <ESC><C-W>k<CR>
 map <C-j>   <ESC><C-W>j<CR>
+
+" コマンドラインモードでmacっぽくカーソル移動
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-a> <C-b>
+cnoremap <C-e> <C-e>
+cnoremap <C-u> <C-e><C-u>
+
+" INSERTモード時にカーソルキーが使えなくなった問題への対処
+" http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
+set nocompatible   " vi互換をOFF
+imap OA <Up>
+imap OB <Down>
+imap OC <Right>
+imap OD <Left>
 
 
 "------------------------------------------
@@ -168,31 +193,26 @@ inoremap # X#
 " jj : Insertモードを抜ける
 inoremap jj <Esc>
 
+" Y : 行末までヤンク
+map Y y$
+
+" INSERTモードに移行せずに空行を挿入
+"  10<Space>o : 10行挿入
+nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+
+" gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
+nnoremap gp :<C-u>set paste<Return>i
+autocmd InsertLeave * set nopaste
+
+" gs : らくらく置換
+nnoremap gs  :<C-u>%s//g<Left><Left>
+vnoremap gs  :s//g<Left><Left>
+
 " ファイル閉じてもundoできる
 if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
-endif
-
-"  PASTEモード
-"  gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
-nnoremap gp :<C-u>set paste<Return>i
-autocmd InsertLeave * set nopaste
-"  NORMAL,INSERTモード時に、自動PASTEモード移行
-if &term =~ "xterm"
-    let &t_ti .= "\e[?2004h"
-    let &t_te .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-
-    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-    cnoremap <special> <Esc>[200~ <nop>
-    cnoremap <special> <Esc>[201~ <nop>
 endif
 
 " ファイル閉じても同じ位置から編集再開
