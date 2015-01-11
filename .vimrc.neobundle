@@ -50,7 +50,7 @@ let g:startify_custom_indices = [
             \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
             \  ]
-let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc']
+let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
 
 " :Ack : ack検索ができる
 NeoBundle 'mileszs/ack.vim'
@@ -133,6 +133,9 @@ NeoBundle 'tComment'
 
 " 変更差分を可視化
 NeoBundle 'airblade/vim-gitgutter'
+let g:gitgutter_sign_column_always = 236
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
 " 違うスクリーンでコピペができるよ
 "  sy : yanc

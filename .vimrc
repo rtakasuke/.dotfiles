@@ -50,10 +50,17 @@ set scrolloff=8      " 上下端に視界を確保
 set sidescrolloff=8  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 
+" カーソル行(列)の背景色
+set cursorline
+set cursorcolumn
+hi CursorLine   term=reverse cterm=none ctermbg=237
+hi CursorColumn term=reverse cterm=none ctermbg=237
+
 " 対応括弧のハイライト
 set showmatch
 set matchpairs& matchpairs+=<:>
 set matchtime=3
+hi  MatchParen cterm=bold ctermbg=8
 
 " タブ・スペースを視覚化
 set list
@@ -131,6 +138,9 @@ vnoremap v $h
 " カーソルが行頭や行末で止まらないように
 set whichwrap=b,s,h,l,<,>,[,]
 
+"矩形選択で行末より後ろも選択できる
+set virtualedit=block
+
 " タブ移動 (shift + ctrl + hjkl)
 map <C-S-h> <ESC>:tabp<CR>
 map <C-S-l> <ESC>:tabn<CR>
@@ -155,11 +165,6 @@ set shiftround
 "  for perl
 inoremap # X#
 
-"  gp : INSERT(PASTE)モードに移行
-"  ノーマルモードに戻るとPASTEモードも解除
-nnoremap gp :<C-u>set paste<Return>i
-autocmd InsertLeave * set nopaste
-
 " jj : Insertモードを抜ける
 inoremap jj <Esc>
 
@@ -167,6 +172,27 @@ inoremap jj <Esc>
 if has('persistent_undo')
     set undodir=~/.vim/undo
     set undofile
+endif
+
+"  PASTEモード
+"  gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
+nnoremap gp :<C-u>set paste<Return>i
+autocmd InsertLeave * set nopaste
+"  NORMAL,INSERTモード時に、自動PASTEモード移行
+if &term =~ "xterm"
+    let &t_ti .= "\e[?2004h"
+    let &t_te .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    noremap <special> <expr> <Esc>[200~ XTermPasteBegin("0i")
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+    cnoremap <special> <Esc>[200~ <nop>
+    cnoremap <special> <Esc>[201~ <nop>
 endif
 
 " ファイル閉じても同じ位置から編集再開

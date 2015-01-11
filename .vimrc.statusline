@@ -9,17 +9,6 @@ set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
 set laststatus=2
 
 
-"IMEの状態でステータスラインの色をかえる
-"TODO 動いてない気がする
-if v:version >= 700
-    augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * highlight StatusLine ctermfg=6 ctermbg=7
-    autocmd InsertLeave * highlight StatusLine ctermfg=4 ctermbg=7
-    augroup END
-endif
-
-
 "--------------------------------------------------------
 "PLUGIN lightline.vim
 "--------------------------------------------------------
