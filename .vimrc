@@ -130,7 +130,7 @@ nnoremap <silent> k gk
 
 " 行頭・行末移動
 "  Normal mode : "^" or "1" or "<Space>h" <-- --> "$" or "9" or "<Space>l"
-"  Insert mode : "C+a" <-- --> "Ctrl+e"
+"  Insert mode : "C+a" <-- --> "C+e"
 nmap 1 ^
 nmap 9 $
 inoremap <C-e> <End>
