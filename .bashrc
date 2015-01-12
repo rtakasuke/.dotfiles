@@ -1,7 +1,3 @@
-# Encode
-export LANG=ja_JP.utf8
-export LC_ALL=ja_JP.UTF-8
-
 ## alias
 alias dev='ssh rtakasuke.com'
 alias cdd='cd ~'

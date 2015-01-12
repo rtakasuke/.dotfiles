@@ -4,6 +4,12 @@
 source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
 source ~/dotfiles/.vimrc.statusline " ステータスライン
 
+" ~/.vimrc.localが存在する場合のみ設定を読み込む
+let s:local_vimrc = expand('~/.vimrc.local')
+if filereadable(s:local_vimrc)
+    execute 'source ' . s:local_vimrc
+endif
+
 
 "------------------------------------------
 " ファイル操作・エンコード
@@ -40,19 +46,21 @@ endif
 " ファイル閉じても同じ位置から編集再開
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
-" タブ
-"  tt  : 新規
-"  tc  : 閉じる
-"  C-n : 次のタブ
-"  C-p : 前のタブ
-nnoremap <silent> tt  :<C-u>tabe<CR>
-nnoremap <silent> tc  :<C-u>tabclose<CR>
-nnoremap <C-p>    gT
-nnoremap <C-n>    gt
-
 " :Ev / :Rv : .vimrcの編集と反映
-command! Ev edit $MYVIMRC
+command! Ev edit   $MYVIMRC
 command! Rv source $MYVIMRC
+
+" 存在しないディレクトリにファイルを保存しようとした時にmkdir
+augroup vimrc-auto-mkdir  " \{\{\{
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)  " \{\{\{
+    if !isdirectory(a:dir) && (a:force ||
+    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction  " \}\}\}
+augroup END  " \}\}\}
 
 
 "------------------------------------------
@@ -98,13 +106,6 @@ hi PmenuSel   ctermbg=red  ctermfg=black
 hi PmenuSbar  ctermbg=darkgray
 hi PmenuThumb ctermbg=lightgray
 
-" fold(おりたたみ)
-"  h / l : とじる / ひらく
-nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
-nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
-nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
-nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
-
 
 "------------------------------------------
 " 検索
@@ -125,7 +126,7 @@ nnoremap # #N
 
 
 "------------------------------------------
-" カーソル移動・スクロール
+" カーソル移動・スクロール・fold(折り畳み)
 "------------------------------------------
 
 " 見た目上の行単位で移動(折り返していたら別の行的な動き)
@@ -153,15 +154,35 @@ set virtualedit=block
 nnoremap <TAB> %
 vnoremap <TAB> %
 
-" タブ移動 (shift + ctrl + hjkl)
-map <C-S-h> <ESC>:tabp<CR>
-map <C-S-l> <ESC>:tabn<CR>
+" タブ
+"  tt  : 新規
+"  tc  : 閉じる
+"  C-n : 次のタブ
+"  C-p : 前のタブ
+nnoremap <silent> tt :<C-u>tabe<CR>
+nnoremap <silent> tc :<C-u>tabclose<CR>
+nnoremap <C-p>    gT
+nnoremap <C-n>    gt
 
-" ウィンドウ移動 (ctrl + hjkl)
-map <C-h>   <ESC><C-W>h<CR>
-map <C-l>   <ESC><C-W>l<CR>
-map <C-k>   <ESC><C-W>k<CR>
-map <C-j>   <ESC><C-W>j<CR>
+" ウィンドウ移動 (ctrl + hjkl←↓↑→))
+map <C-h>     <ESC><C-W>h<CR>
+map <C-l>     <ESC><C-W>l<CR>
+map <C-k>     <ESC><C-W>k<CR>
+map <C-j>     <ESC><C-W>j<CR>
+map <C-Left>  <ESC><C-W>h<CR>
+map <C-Right> <ESC><C-W>l<CR>
+map <C-Up>    <ESC><C-W>k<CR>
+map <C-Down>  <ESC><C-W>j<CR>
+
+" ウィンドウサイズ変更(Shift + hjkl←↓↑→)
+nnoremap <S-h>     <C-w><<CR>
+nnoremap <S-l>     <C-w><CR>
+nnoremap <S-k>     <C-w>-<CR>
+nnoremap <S-j>     <C-w>+<CR>
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
 
 " コマンドラインモードでmacっぽくカーソル移動
 cnoremap <C-f> <Right>
@@ -169,6 +190,15 @@ cnoremap <C-b> <Left>
 cnoremap <C-a> <C-b>
 cnoremap <C-e> <C-e>
 cnoremap <C-u> <C-e><C-u>
+
+
+" fold
+"  h / l : とじる / ひらく
+nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
+nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
+nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
+nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
+
 
 " INSERTモード時にカーソルキーが使えなくなった問題への対処
 " http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys

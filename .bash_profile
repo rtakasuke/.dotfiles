@@ -1,8 +1,13 @@
-# ~/.bashrcの内容を読み込むだけ
+# ~/.bashrcの内容を読み込む
 if [ -f ~/.bashrc ]; then
       . ~/.bashrc
   fi
 
+# Encode
+export LANG=ja_JP.utf8
+export LC_ALL=ja_JP.UTF-8
+
+# Path
 export PATH=$PATH:/usr/local/mysql/bin
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:/usr/local/share:$PATH
