@@ -1,6 +1,6 @@
 ## alias
 alias dev='ssh rtakasuke.com'
-alias cdd='cd ~'
+alias ch='cd ~'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -al'
