@@ -69,6 +69,10 @@ set scrolloff=4      " 上下端に視界を確保
 set sidescrolloff=4  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 
+" 自己主張の強い色を調整
+hi SignColumn ctermbg=236
+hi LineNr ctermfg=59
+
 " カーソル行(列)をハイライト
 set cursorline
 set cursorcolumn
@@ -199,8 +203,8 @@ set shiftround
 "  for perl
 inoremap # X#
 
-" C-l : Insertモードを抜ける
-nmap <C-j> <Esc>
+" C-j : Insertモードを抜ける
+inoremap <C-j> <Esc>
 
 " gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
 nnoremap gp :<C-u>set paste<Return>i

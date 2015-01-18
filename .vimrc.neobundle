@@ -133,7 +133,6 @@ NeoBundle 'tComment'
 
 " 変更差分を可視化
 NeoBundle 'airblade/vim-gitgutter'
-let g:gitgutter_sign_column_always = 236
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
