@@ -59,11 +59,12 @@ augroup END  " \}\}\}
 "------------------------------------------
 " 表示
 "------------------------------------------
-colorscheme desert
 syntax on
+colorscheme desert
 set term=xterm-256color
 set t_Co=256
 set number
+set display=lastline
 set ruler
 set scrolloff=4      " 上下端に視界を確保
 set sidescrolloff=4  " 左右端に視界を確保
@@ -82,7 +83,7 @@ hi  CursorColumn term=reverse cterm=none ctermbg=237
 " 対応括弧のハイライト
 set showmatch
 set matchpairs& matchpairs+=<:>
-set matchtime=3
+set matchtime=1
 hi  MatchParen cterm=bold ctermbg=8
 
 " タブ・スペース視覚化
@@ -97,7 +98,8 @@ hi DiffChange ctermbg=101  ctermfg=black
 hi DiffDelete ctermbg=96   ctermfg=black
 hi DiffText   ctermbg=248  ctermfg=black
 
-" ポップアップの色
+" ポップアップ
+set pumheight=10
 hi Pmenu      ctermbg=gray ctermfg=black
 hi PmenuSel   ctermbg=red  ctermfg=black
 hi PmenuSbar  ctermbg=darkgray
@@ -212,6 +214,10 @@ autocmd  InsertLeave * set nopaste
 
 " Y : 行末までヤンク
 map Y y$
+
+" インクリ&デクリメント
+nnoremap + <C-a>
+nnoremap - <C-x>
 
 " 空行を挿入
 "  10<Space>o : 10行挿入
