@@ -1,6 +1,7 @@
 "------------------------------------------
 " includes
 "------------------------------------------
+source ~/dotfiles/.vimrc.init       " 環境未整備時用のNeoBundleInit
 source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
 source ~/dotfiles/.vimrc.statusline " ステータスライン
 
