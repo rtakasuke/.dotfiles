@@ -87,7 +87,7 @@ set matchpairs& matchpairs+=<:>
 set matchtime=1
 hi  MatchParen cterm=bold ctermbg=8
 
-" タブ・スペース視覚化
+" 不可視文字の視覚化
 set   list
 set   listchars=tab:>-,trail:-,extends:>,precedes:<
 hi    ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
@@ -153,12 +153,16 @@ nnoremap <TAB> %
 vnoremap <TAB> %
 
 " タブ
-"  tt  : 新規
-"  tc  : 閉じる
-"  C-n : 次のタブ
-"  C-p : 前のタブ
+"  tt   : 新規
+"  tx   : 閉じる
+"  C-n  : 次のタブ
+"  C-p  : 前のタブ
+"  t<i> : <i>番目のタブに移動
+for n in range(1, 9)
+  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
 nnoremap <silent> tt :<C-u>tabe<CR>
-nnoremap <silent> tc :<C-u>tabclose<CR>
+nnoremap <silent> tx :<C-u>tabclose<CR>
 nnoremap <C-p>    gT
 nnoremap <C-n>    gt
 
@@ -175,14 +179,12 @@ cnoremap <C-a> <C-b>
 cnoremap <C-e> <C-e>
 cnoremap <C-u> <C-e><C-u>
 
-
 " fold
 "  h / l : とじる / ひらく
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
-
 
 " INSERTモード時にカーソルキーが使えなくなった問題への対処
 " http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
