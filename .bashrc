@@ -31,10 +31,10 @@ source ~/.git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 
 ## prompt
-PS1="\`
-if [ \$? = 0 ]; then 
-    echo \[\e[36m\]; 
-else 
-    echo \[\e[31m\]; 
-fi
-\`[\u@\H \w]\[\e[0m\]\n$"
+TIME="$(date +%H:%M:%S)"
+FILE_COUNT="\$(ls -1 -a | wc -l | sed 's: ::g')"
+C_GREEN="\[\e[32m\]"
+C_BLUE="\[\e[34m\]"
+C_CYAN="\[\e[36m\]"
+C_RESET="\[\e[0m\]"
+PS1="${C_BLUE}(${TIME}) \H${C_RESET} ${C_CYAN}\w >(${FILE_COUNT})${C_RESET}  ${C_GREEN}$(__git_ps1)${C_RESET}\n$"
