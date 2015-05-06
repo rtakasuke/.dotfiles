@@ -1,3 +1,21 @@
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+export EDITOR=vim
+bindkey -e
+setopt no_beep
+setopt auto_cd
+setopt auto_pushd
+setopt correct
+setopt correct_all
+
+## 補完
+setopt list_packed
+setopt list_types
+setopt auto_list
+setopt auto_menu
+setopt auto_param_slash
+setopt magic_equal_subst
+
 ## alias
 alias dev='ssh rtakasuke.com'
 alias ch='cd ~'
@@ -18,23 +36,3 @@ alias tmd='tmux detach'
 TMUX_BUFFER_OUT_FILE="${HOME}/.tmux_buffer_out.txt"
 alias bl='tmux saveb -b 0 ${TMUX_BUFFER_OUT_FILE} && echo >> ${TMUX_BUFFER_OUT_FILE}'
 alias br='cat ${TMUX_BUFFER_OUT_FILE}'
-
-## 補完
-#bash-completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
-# git-completion
-# https://github.com/git/git/tree/master/contrib/completion
-source ~/.git-completion.bash
-source ~/.git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-
-## prompt
-TIME="\$(date +%H:%M:%S)"
-FILE_COUNT="\$(ls -1 -a | wc -l | sed 's: ::g')"
-C_GREEN="\[\e[32m\]"
-C_BLUE="\[\e[34m\]"
-C_CYAN="\[\e[36m\]"
-C_RESET="\[\e[0m\]"
-PS1="${C_BLUE}(${TIME}) \H${C_RESET} ${C_CYAN}\w${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$"

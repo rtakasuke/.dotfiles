@@ -1,0 +1,6 @@
+set noignorecase
+set smartcase
+
+" Esc
+noremap  <C-c> <C-[>
+noremap! <C-c> <C-[>
