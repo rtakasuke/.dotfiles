@@ -1,13 +1,13 @@
 "------------------------------------------------------------
 " NeoBundle
 "------------------------------------------------------------
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-    call neobundle#end()
-endif
 
+
+"------------------------------------------------------------
+" 自作
+"------------------------------------------------------------
+NeoBundle 'rtakasuke/vim-neko'
+map <silent> neko :call Neko()<CR>
 
 "------------------------------------------------------------
 " ファイル操作・ファイル検索

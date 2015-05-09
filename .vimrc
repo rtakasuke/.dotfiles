@@ -2,8 +2,14 @@
 " includes
 "------------------------------------------
 source ~/dotfiles/.vimrc.init       " 環境未整備時用のNeoBundleInit
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
 source ~/dotfiles/.vimrc.statusline " ステータスライン
+call neobundle#end()
 
 let s:local_vimrc = expand('~/.vimrc.local')
 if filereadable(s:local_vimrc)
