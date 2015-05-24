@@ -1,13 +1,15 @@
-""------------------------------------------------------------
-"" NeoBundle
-""------------------------------------------------------------
-
 
 "------------------------------------------------------------
-" 自作
+" rtakasukeシリーズ
 "------------------------------------------------------------
 NeoBundle 'rtakasuke/vim-neko'
 map <silent> neko :Neko<CR>
+
+NeoBundle 'rtakasuke/yanktmp.vim'
+map <silent> sy :call YanktmpYank()<CR>
+map <silent> sp :call YanktmpPaste_p()<CR>
+map <silent> sP :call YanktmpPaste_P()<CR>
+
 
 "------------------------------------------------------------
 " ファイル操作・ファイル検索
@@ -127,14 +129,6 @@ NeoBundle 'tComment'
 NeoBundle 'airblade/vim-gitgutter'
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
-
-" 違うスクリーンでコピペができるよ
-"  sy : yanc
-"  sp : paste
-NeoBundle 'yanktmp.vim'
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
 
 " 選択範囲を('*'や'#'で)検索
 NeoBundle 'thinca/vim-visualstar'

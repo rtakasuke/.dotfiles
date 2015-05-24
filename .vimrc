@@ -1,7 +1,7 @@
 "------------------------------------------
 " includes
 "------------------------------------------
-source ~/dotfiles/.vimrc.init       " 環境未整備時用のNeoBundleInit
+source ~/dotfiles/.vimrc.init " 環境未整備時用のNeoBundleInit
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
