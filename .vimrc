@@ -1,10 +1,17 @@
+" vimrcグループに属するautocmd を一旦初期化
+augroup vimrc
+  autocmd!
+augroup END
+
 "------------------------------------------
 " includes
 "------------------------------------------
 source ~/dotfiles/.vimrc.init " 環境未整備時用のNeoBundleInit
+
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
@@ -20,6 +27,7 @@ endif
 "------------------------------------------
 " ファイル操作・エンコード
 "------------------------------------------
+set encoding=utf-8
 scriptencoding utf-8
 filetype on
 filetype indent on
@@ -29,7 +37,6 @@ set noswapfile
 set hidden
 set confirm
 set fileformat=unix
-set encoding=utf-8
 set fileencoding=utf-8
 set fileformats=unix,dos,mac
 set fileencodings=utf-8,iso-2022-jp,utf-16,ucs-2-internal,ucs-2,cp932,shift-jis,euc-jp,japan
@@ -48,7 +55,7 @@ if has('persistent_undo')
 endif
 
 " ファイル閉じても同じ位置から編集再開
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 
 " 存在しないディレクトリにファイルを保存しようとした時にmkdir
 augroup vimrc-auto-mkdir  " \{\{\{
@@ -194,7 +201,6 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 " INSERTモード時にカーソルキーが使えなくなった問題への対処
 " http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
-set nocompatible   " vi互換をOFF
 imap OA <Up>
 imap OB <Down>
 imap OC <Right>
@@ -219,7 +225,7 @@ inoremap <C-j> <Esc>
 
 " gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
 nnoremap gp :<C-u>set paste<Return>i
-autocmd  InsertLeave * set nopaste
+autocmd vimrc InsertLeave * set nopaste
 
 " Y : 行末までヤンク
 map Y y$

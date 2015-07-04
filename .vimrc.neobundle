@@ -105,14 +105,14 @@ inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y> neocomplcache#close_popup()
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 "  omni補完
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType php           setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType perl          setlocal omnifunc=perlcomplete#CompletePERL
-autocmd FileType python        setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType c             setlocal omnifunc=ccomplete#Complete
+autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd vimrc FileType php           setlocal omnifunc=phpcomplete#CompletePHP
+autocmd vimrc FileType perl          setlocal omnifunc=perlcomplete#CompletePERL
+autocmd vimrc FileType python        setlocal omnifunc=pythoncomplete#Complete
+autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
 
 
 "------------------------------------------------------------
