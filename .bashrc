@@ -38,3 +38,5 @@ C_BLUE="\[\e[34m\]"
 C_CYAN="\[\e[36m\]"
 C_RESET="\[\e[0m\]"
 PS1="${C_BLUE}(${TIME}) \H${C_RESET} ${C_CYAN}\w${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

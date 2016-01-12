@@ -36,3 +36,5 @@ alias tmd='tmux detach'
 TMUX_BUFFER_OUT_FILE="${HOME}/.tmux_buffer_out.txt"
 alias bl='tmux saveb -b 0 ${TMUX_BUFFER_OUT_FILE} && echo >> ${TMUX_BUFFER_OUT_FILE}'
 alias br='cat ${TMUX_BUFFER_OUT_FILE}'
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

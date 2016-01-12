@@ -171,15 +171,15 @@ vnoremap <TAB> %
 "  C-n  : 次のタブ
 "  C-p  : 前のタブ
 "  t<i> : <i>番目のタブに移動
-for n in range(1, 9)
-  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
 nnoremap <silent> tt :<C-u>tabe<CR>
 nnoremap <silent> tx :<C-u>tabclose<CR>
 nnoremap <C-p>    gT
 nnoremap <C-n>    gt
+for n in range(1, 9)
+  execute 'nnoremap <silent> t'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
 
-" ウィンドウ移動 (ctrl + hjkl←↓↑→))
+" ウィンドウ移動 (ctrl + hjkl)
 map <C-h>     <ESC><C-W>h<CR>
 map <C-l>     <ESC><C-W>l<CR>
 map <C-k>     <ESC><C-W>k<CR>
@@ -193,7 +193,8 @@ cnoremap <C-e> <C-e>
 cnoremap <C-u> <C-e><C-u>
 
 " fold
-"  h / l : とじる / ひらく
+"  h : とじる
+"  l : ひらく
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
