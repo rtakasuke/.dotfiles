@@ -119,6 +119,11 @@ autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
 " その他の精鋭たち
 "------------------------------------------------------------
 
+" 日本語ヘルプ
+"  :h
+"  :help
+NeoBundle 'vim-jp/vimdoc-ja'
+
 " \rでプログラム実行できる
 NeoBundle 'quickrun.vim'
 

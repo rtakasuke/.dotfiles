@@ -83,6 +83,7 @@ set ruler
 set scrolloff=4      " 上下端に視界を確保
 set sidescrolloff=4  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
+set synmaxcol=200    " １行の文字数が多い時はSyntaxHighlightを無効
 
 " 自己主張の強い色を調整
 hi SignColumn ctermbg=236
