@@ -1,15 +1,10 @@
 ## alias
-alias dev='ssh rtakasuke.com'
 alias ch='cd ~'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -al'
 alias rm='rm -i'
-alias diff='colordiff' # brew install colordiff
-# for screen
-alias sc='screen'
-alias scr='screen -r'
-alias scd='screen -d'
+alias diff='colordiff'
 # for tmux
 alias tm='tmux'
 alias tma='tmux attach'

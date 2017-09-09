@@ -6,10 +6,6 @@ CURL_CMD=/usr/bin/curl
 
 ${MKDIR_CMD} -p ${BIN_DIR}
 
-# ack
-${CURL_CMD} -sL http://betterthangrep.com/ack-standalone > ${BIN_DIR}/ack
-chmod +x ${BIN_DIR}/ack
-
 # git-ignore
 ${CURL_CMD} -sL https://raw.githubusercontent.com/yuroyoro/git-ignore/master/git-ignore > ${BIN_DIR}/git-ignore
 chmod +x ${BIN_DIR}/git-ignore
