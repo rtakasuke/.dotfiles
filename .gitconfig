@@ -2,6 +2,7 @@
 	name  = rtakasuke
 	email = takahashi@tamagohan.skr.jp
 [color]
+	ui          = true
 	status      = auto
 	diff        = auto
 	branch      = auto
