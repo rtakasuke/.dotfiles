@@ -37,7 +37,7 @@ C_GREEN="\[\e[32m\]"
 C_BLUE="\[\e[34m\]"
 C_CYAN="\[\e[36m\]"
 C_RESET="\[\e[0m\]"
-PS1="${C_BLUE}[\H \w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$"
+PS1="${C_BLUE}[\H \w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
 
 # Go 環境設定
 if [ -x "`which go`" ]; then
