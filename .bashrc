@@ -47,3 +47,4 @@ if [ -x "`which go`" ]; then
 fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH=$PATH:/Users/rtakasuke/.nodebrew/current/bin
