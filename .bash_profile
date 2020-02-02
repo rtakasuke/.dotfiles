@@ -5,6 +5,11 @@ export PATH=/usr/local/bin:/usr/local/share:$PATH
 export PATH=/usr/local/share:$PATH
 export PATH=~/git/bin:$PATH
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # .bashrc
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc

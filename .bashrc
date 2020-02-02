@@ -27,8 +27,8 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
 fi
 ## git-completion
 ## https://github.com/git/git/tree/master/contrib/completion
-source ~/.git-completion.bash
 source ~/.git-prompt.sh
+source ~/.git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true
 
 # prompt

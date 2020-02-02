@@ -12,8 +12,8 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-source ~/.dotfiles/.vimrc.neobundle  " プラグイン全部
-source ~/.dotfiles/.vimrc.statusline " ステータスライン
+source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
+source ~/dotfiles/.vimrc.statusline " ステータスライン
 call neobundle#end()
 
 let s:local_vimrc = expand('~/.vimrc.local')

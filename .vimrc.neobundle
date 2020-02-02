@@ -15,32 +15,6 @@ map <silent> sP :call YanktmpPaste_P()<CR>
 " ファイル操作・ファイル検索
 "------------------------------------------------------------
 
-" ゆないとfamily
-"  ,ff : ファイル一覧
-"  ,fb : バッファ一覧
-"  ,fr : レジスタ一覧
-"  ,fm : 最近使ったファイル
-"  ,fc : ブックマーク参照
-"  ,fa : ブックマーク追加
-"  ,fg : perlのグローバルモジュール一覧
-"  ,fl : perlのローカルモジュール一覧
-NeoBundle 'unite.vim'
-nnoremap [unite] <Nop>
-nmap ,f [unite]
-let g:unite_enable_start_insert = 1              " 起動時にINSERTモード
-let g:unite_source_file_mru_limit = 10           " 最近開いたファイル
-let g:unite_source_file_mru_filename_format = '' " 表示スピード高速化
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
-"  for perl module
-NeoBundle 'y-uuki/unite-perl-module.vim'
-nnoremap <silent> [unite]g :<C-u>Unite perl/global<CR>
-nnoremap <silent> [unite]l :<C-u>Unite perl/local<CR>
-
 " vim起動時に最近開いたファイルとか表示
 NeoBundle 'mhinz/vim-startify'
 let g:startify_custom_header =
@@ -152,6 +126,10 @@ NeoBundle 'Shougo/vimproc.vim', {
     \     'unix' : 'gmake',
     \    },
     \ }
+
+
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
 "------------------------------------------------------------
