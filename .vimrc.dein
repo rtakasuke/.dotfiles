@@ -13,9 +13,6 @@ let g:startify_custom_indices = [
             \  ]
 let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
 
-" :Ack : ack検索ができる
-call dein#add('mileszs/ack.vim')
-
 " C-e : ディレクトリをツリー表示
 call dein#add('scrooloose/nerdtree')
 let      NERDTreeShowHidden = 1
@@ -77,6 +74,21 @@ autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
 
 
 "------------------------------------------------------------
+" 静的解析
+"------------------------------------------------------------
+call dein#add('scrooloose/syntastic')
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ["flake8"]
+
+
+"------------------------------------------------------------
 " その他の精鋭たち
 "------------------------------------------------------------
 
@@ -105,19 +117,15 @@ call dein#add('vim-scripts/AnsiEsc.vim')
 
 " vimの非同期実行に必要。多くのプラグインが依存しているのでとりあえず。
 " バージョンアップのたびにmakeする必要があるのでこんな書き方になってる。
-call dein#add('Shougo/vimproc.vim', {
-    \ 'build' : {
-    \     'windows' : 'tools\\update-dll-mingw',
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac' : 'make -f make_mac.mak',
-    \     'linux' : 'make',
-    \     'unix' : 'gmake',
-    \    },
-    \ })
-
-
-call dein#add('scrooloose/syntastic')
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+:" call dein#add('Shougo/vimproc.vim', {
+"     \ 'build' : {
+"     \     'windows' : 'tools\\update-dll-mingw',
+"     \     'cygwin' : 'make -f make_cygwin.mak',
+"     \     'mac' : 'make -f make_mac.mak',
+"     \     'linux' : 'make',
+"     \     'unix' : 'gmake',
+"     \    },
+"     \ })
 
 
 "------------------------------------------------------------
@@ -132,8 +140,5 @@ call dein#add('tpope/vim-surround')
 " スニペット補完
 call dein#add('msanders/snipmate.vim')
 
-" Align : 整形・桁揃え
-" 位置を選択後 :\t=
-call dein#add('vim-scripts/Align')
-let g:Align_xstrlen = 3 " 日本語対応
-
+" :Ack : ack検索ができる
+call dein#add('mileszs/ack.vim')

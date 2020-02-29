@@ -7,8 +7,9 @@ ln -sf $BASE_DIR/.bashrc ~/.bashrc
 ln -sf $BASE_DIR/.vimrc ~/.vimrc
 ln -sf $BASE_DIR/.tigrc ~/.tigrc
 ln -sf $BASE_DIR/.gitconfig ~/.gitconfig
-ln -sf $BASE_DIR/.git-prompt.sh ~/.git-prompt.sh
-ln -sf $BASE_DIR/.git-completion.bash ~/.git-completion.bash
+
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash > ~/.git-completion.bash
 
 # dein.vim
 DEIN_VIM_INSTALLER=$BASE_DIR/dein_vim_installer.sh

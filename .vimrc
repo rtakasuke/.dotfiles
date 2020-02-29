@@ -6,24 +6,32 @@ augroup END
 "------------------------------------------
 " プラグイン管理
 "------------------------------------------
-if has('vim_starting')
-    set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+if &compatible
+  set nocompatible
 endif
 
-call dein#begin(expand('~/.vim/dein'))
-source ~/.dotfiles/.vimrc.dein  " プラグイン全部
-source ~/.dotfiles/.vimrc.statusline " ステータスライン
-call dein#end()
+if has('vim_starting')
+  set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+endif
 
-" インストールされていないプラグインがあったらインストール
+if dein#load_state('~/.vim/dein')
+  call dein#begin(expand('~/.vim/dein'))
+  call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
+  source ~/.dotfiles/.vimrc.dein  " プラグイン全部
+  source ~/.dotfiles/.vimrc.statusline " ステータスライン
+  call dein#end()
+  call dein#save_state()
+endif
+
+" 自動インストール
 if dein#check_install()
   call dein#install()
 endif
 
-let s:local_vimrc = expand('~/.vimrc.local')
-if filereadable(s:local_vimrc)
-    execute 'source ' . s:local_vimrc
-endif
+" アンインストールのために必要
+" 以下のコマンドを実行する必要がある
+"   :call dein#recache_runtimepath()
+call map(dein#check_clean(), "delete(v:val, 'rf')")
 
 
 "------------------------------------------
