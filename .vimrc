@@ -4,17 +4,21 @@ augroup vimrc
 augroup END
 
 "------------------------------------------
-" includes
+" プラグイン管理
 "------------------------------------------
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-source ~/dotfiles/.vimrc.neobundle  " プラグイン全部
-source ~/dotfiles/.vimrc.statusline " ステータスライン
-call neobundle#end()
+call dein#begin(expand('~/.vim/dein'))
+source ~/.dotfiles/.vimrc.dein  " プラグイン全部
+source ~/.dotfiles/.vimrc.statusline " ステータスライン
+call dein#end()
+
+" インストールされていないプラグインがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
 let s:local_vimrc = expand('~/.vimrc.local')
 if filereadable(s:local_vimrc)

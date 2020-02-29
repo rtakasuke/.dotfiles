@@ -1,9 +1,9 @@
 ""--------------------------------------------------------
 "" status line
 ""--------------------------------------------------------
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'cocopon/colorswatch.vim'
-NeoBundle 'tpope/vim-fugitive'
+call dein#add('itchyny/lightline.vim')
+call dein#add('cocopon/colorswatch.vim')
+call dein#add('tpope/vim-fugitive')
 
 set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
 set laststatus=2

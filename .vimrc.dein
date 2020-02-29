@@ -1,22 +1,9 @@
-
-"------------------------------------------------------------
-" rtakasukeシリーズ
-"------------------------------------------------------------
-NeoBundle 'rtakasuke/vim-neko'
-map <silent> neko :Neko<CR>
-
-NeoBundle 'rtakasuke/yanktmp.vim'
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
-
-
 "------------------------------------------------------------
 " ファイル操作・ファイル検索
 "------------------------------------------------------------
 
-" vim起動時に最近開いたファイルとか表示
-NeoBundle 'mhinz/vim-startify'
+" vim起動時に最近開いたファイルを表示
+call dein#add('mhinz/vim-startify')
 let g:startify_custom_header =
             \ map(['Vim '.v:version]+split(system('date'), '\n'), '"   ". v:val')+ ['','']
 let g:startify_custom_indices = [
@@ -27,10 +14,10 @@ let g:startify_custom_indices = [
 let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
 
 " :Ack : ack検索ができる
-NeoBundle 'mileszs/ack.vim'
+call dein#add('mileszs/ack.vim')
 
 " C-e : ディレクトリをツリー表示
-NeoBundle 'scrooloose/nerdtree'
+call dein#add('scrooloose/nerdtree')
 let      NERDTreeShowHidden = 1
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
@@ -45,7 +32,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 "  <Space>w : 前方単語移動
 "  <Space>b : 後方単語移動
 "  <Space>s : 1文字検索
-NeoBundle 'Lokaltog/vim-easymotion'
+call dein#add('Lokaltog/vim-easymotion')
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_leader_key="<Space>"
 let g:EasyMotion_grouping=1
@@ -53,7 +40,7 @@ hi  EasyMotionTarget ctermbg=none ctermfg=red
 hi  EasyMotionShade  ctermbg=none ctermfg=blue
 
 " %による対応括弧へのジャンプ機能を拡張
-NeoBundle 'tmhedberg/matchit'
+call dein#add('tmhedberg/matchit')
 
 
 "------------------------------------------------------------
@@ -67,7 +54,7 @@ NeoBundle 'tmhedberg/matchit'
 "  <BS> : ポップアップを閉じる
 "  C-y  : 選択している候補を確定する
 "  C-e  : 選択している候補をキャンセルして閉じる
-NeoBundle 'Shougo/neocomplcache'
+call dein#add('Shougo/neocomplcache')
 let g:acp_enableAtStartup=0                      " (インストールされているのなら)AutoComplPopを無効化
 let g:neocomplcache_enable_at_startup=1          " vim起動時に有効化
 let g:neocomplcache_enable_smart_case=1          " 大文字、小文字を区別しない
@@ -96,28 +83,29 @@ autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
 " 日本語ヘルプ
 "  :h
 "  :help
-NeoBundle 'vim-jp/vimdoc-ja'
+call dein#add('vim-jp/vimdoc-ja')
 
 " \rでプログラム実行できる
-NeoBundle 'quickrun.vim'
+call dein#add('thinca/vim-quickrun')
+
 
 " (normal/visual) gcc : コメントアウト
-NeoBundle 'tComment'
+call dein#add('tomtom/tcomment_vim')
 
 " 変更差分を可視化
-NeoBundle 'airblade/vim-gitgutter'
+call dein#add('airblade/vim-gitgutter')
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
 " 選択範囲を('*'や'#'で)検索
-NeoBundle 'thinca/vim-visualstar'
+call dein#add('thinca/vim-visualstar')
 
 " ログファイルの色付け
-NeoBundle 'vim-scripts/AnsiEsc.vim'
+call dein#add('vim-scripts/AnsiEsc.vim')
 
 " vimの非同期実行に必要。多くのプラグインが依存しているのでとりあえず。
 " バージョンアップのたびにmakeする必要があるのでこんな書き方になってる。
-NeoBundle 'Shougo/vimproc.vim', {
+call dein#add('Shougo/vimproc.vim', {
     \ 'build' : {
     \     'windows' : 'tools\\update-dll-mingw',
     \     'cygwin' : 'make -f make_cygwin.mak',
@@ -125,10 +113,10 @@ NeoBundle 'Shougo/vimproc.vim', {
     \     'linux' : 'make',
     \     'unix' : 'gmake',
     \    },
-    \ }
+    \ })
 
 
-NeoBundle 'scrooloose/syntastic'
+call dein#add('scrooloose/syntastic')
 let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 
 
@@ -139,13 +127,13 @@ let g:syntastic_python_checkers = ['pyflakes', 'pep8']
 " 囲み文字の入力補助
 "  囲み文字の削除:ds (delete surround)
 "  囲み文字の変更:cs (change surrount)
-NeoBundle 'surround.vim'
+call dein#add('tpope/vim-surround')
 
 " スニペット補完
-NeoBundle 'msanders/snipmate.vim'
+call dein#add('msanders/snipmate.vim')
 
 " Align : 整形・桁揃え
 " 位置を選択後 :\t=
-NeoBundle 'vim-scripts/Align'
+call dein#add('vim-scripts/Align')
 let g:Align_xstrlen = 3 " 日本語対応
 
