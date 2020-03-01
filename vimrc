@@ -31,12 +31,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-" アンインストールのために必要
-call map(dein#check_clean(), "delete(v:val, 'rf')")
-
-" nmap dein_update :call dein#update()<cr>
-" nmap dein_remove :call dein#recache_runtimepath()<cr>
-
 
 "------------------------------------------
 " ファイル操作・エンコード
