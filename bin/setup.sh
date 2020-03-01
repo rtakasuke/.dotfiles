@@ -7,7 +7,6 @@ ln -sf $BASE_DIR/bash_profile ~/.bash_profile
 ln -sf $BASE_DIR/bashrc ~/.bashrc
 ln -sf $BASE_DIR/gitconfig ~/.gitconfig
 ln -sf $BASE_DIR/tigrc ~/.tigrc
-ln -sf $BASE_DIR/vimrc ~/.vimrc
 ln -sf $BASE_DIR/nvim ~/.config/nvim
 
 echo "### Install dein.vim (vim)"
