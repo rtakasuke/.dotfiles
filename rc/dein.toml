@@ -1,0 +1,151 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+#------------------------------------------------------------
+# ファイル操作・ファイル検索
+#------------------------------------------------------------
+
+[[plugins]]
+# vim起動時に最近開いたファイルを表示
+repo = 'mhinz/vim-startify'
+hook_add = '''
+  let g:startify_custom_header =
+    \ map(['Vim '.v:version]+split(system('date'), '\n'), '"   ". v:val')+ ['','']
+  let g:startify_custom_indices = [
+    \ 'a', 'c', 'd', 'f', 'g', 'h', 'l', 'm', 'n', 'o', 'p', 'r', 'u', 'w', 'x',
+    \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    \  ]
+  let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
+'''
+
+[[plugins]]
+# C-e : ディレクトリをツリー表示
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  let      NERDTreeShowHidden = 1
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
+'''
+
+
+#------------------------------------------------------------
+# カーソル移動・スクロール
+#------------------------------------------------------------
+
+[[plugins]]
+#  <Space>k : 上行移動
+#  <Space>j : 下行移動
+#  <Space>w : 前方単語移動
+#  <Space>b : 後方単語移動
+#  <Space>s : 1文字検索
+repo = 'Lokaltog/vim-easymotion'
+hook_add = '''
+  let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+  let g:EasyMotion_leader_key="<Space>"
+  let g:EasyMotion_grouping=1
+  hi  EasyMotionTarget ctermbg=none ctermfg=red
+  hi  EasyMotionShade  ctermbg=none ctermfg=blue
+'''
+
+[[plugins]]
+# %による対応括弧へのジャンプ機能を拡張
+repo = 'tmhedberg/matchit'
+
+
+#------------------------------------------------------------
+# オートコンプリート
+#------------------------------------------------------------
+
+[[plugins]]
+#  C-g  : 前回行われた補完をキャンセル
+#  C-l  : 補完候補のなかから共通する部分を補完。シェルの補完のような動き
+#  C-h  : ポップアップを閉じる
+#  <BS> : ポップアップを閉じる
+#  C-y  : 選択している候補を確定する
+#  C-e  : 選択している候補をキャンセルして閉じる
+repo = 'Shougo/neocomplcache'
+hook_add = '''
+  let g:acp_enableAtStartup=0                      " (インストールされているのなら)AutoComplPopを無効化
+  let g:neocomplcache_enable_at_startup=1          " vim起動時に有効化
+  let g:neocomplcache_enable_smart_case=1          " 大文字、小文字を区別しない
+  let g:neocomplcache_enable_underbar_completion=1 " アンダースコア区切りの補完
+  inoremap <expr><C-g> neocomplcache#undo_completion()
+  inoremap <expr><C-l> neocomplcache#complete_common_string()
+  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y> neocomplcache#close_popup()
+  inoremap <expr><C-e> neocomplcache#cancel_popup()
+  autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
+  autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd vimrc FileType php           setlocal omnifunc=phpcomplete#CompletePHP
+  autocmd vimrc FileType perl          setlocal omnifunc=perlcomplete#CompletePERL
+  autocmd vimrc FileType python        setlocal omnifunc=pythoncomplete#Complete
+  autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
+'''
+
+
+#------------------------------------------------------------
+# 静的解析
+#------------------------------------------------------------
+[[plugins]]
+repo = 'scrooloose/syntastic'
+hook_add = '''
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_python_checkers = ["flake8"]
+'''
+
+
+#------------------------------------------------------------
+# その他の精鋭たち
+#------------------------------------------------------------
+
+[[plugins]]
+# \rでプログラム実行できる
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+# (normal/visual) gcc : コメントアウト
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+# 変更差分を可視化
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+  nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+'''
+
+[[plugins]]
+# 選択範囲を('*'や'#'で)検索
+repo = 'thinca/vim-visualstar'
+
+[[plugins]]
+# ログファイルの色付け
+repo = 'vim-scripts/AnsiEsc.vim'
+
+
+#------------------------------------------------------------
+# 補欠メンバー
+#------------------------------------------------------------
+
+[[plugins]]
+# 囲み文字の入力補助
+#  囲み文字の削除:ds (delete surround)
+#  囲み文字の変更:cs (change surrount)
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+# スニペット補完
+repo = 'msanders/snipmate.vim'
+
+[[plugins]]
+# :Ack : ack検索ができる
+repo = 'mileszs/ack.vim'
