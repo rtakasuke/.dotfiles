@@ -1,5 +1,5 @@
 # setup
 ```
 $ xcode-select --install
-$ ./setup.sh
+$ bin/setup.sh
 ```

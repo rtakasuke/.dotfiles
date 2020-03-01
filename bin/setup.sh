@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE_DIR=$(cd $(dirname $0) && pwd)
+BASE_DIR=$(cd $(dirname $0) && cd .. && pwd)
 
 echo "Create symlinks for dotfiles"
 ln -sf $BASE_DIR/bash_profile ~/.bash_profile
