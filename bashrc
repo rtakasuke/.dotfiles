@@ -1,4 +1,5 @@
 # alias
+alias vim='nvim'
 alias cd='pushd > /dev/null'
 alias cdh='cd ~'
 alias ch='cd ~'
@@ -28,7 +29,7 @@ C_GREEN="\[\e[32m\]"
 C_BLUE="\[\e[34m\]"
 C_CYAN="\[\e[36m\]"
 C_RESET="\[\e[0m\]"
-PS1="${C_BLUE}[\H \w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$"
+PS1="${C_BLUE}[\H \w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$PATH:/Users/rtakasuke/.nodebrew/current/bin
