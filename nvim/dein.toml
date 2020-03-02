@@ -138,8 +138,8 @@ repo = 'vim-scripts/AnsiEsc.vim'
 
 [[plugins]]
 # 囲み文字の入力補助
-#  囲み文字の削除:ds (delete surround)
-#  囲み文字の変更:cs (change surrount)
+#  囲み文字の削除 ds (delete surround)
+#  囲み文字の変更 cs (change surrount)
 repo = 'tpope/vim-surround'
 
 [[plugins]]
