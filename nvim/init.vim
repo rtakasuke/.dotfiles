@@ -207,13 +207,6 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zo0' : 'h'
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zcgv' : 'h'
 nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
-" INSERTモード時にカーソルキーが使えなくなった問題への対処
-" http://vim-jp.org/vimdoc-ja/term.html#vt100-cursor-keys
-imap OA <Up>
-imap OB <Down>
-imap OC <Right>
-imap OD <Left>
-
 
 "------------------------------------------
 " 編集
