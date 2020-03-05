@@ -4,10 +4,10 @@ BASE_DIR=$(cd $(dirname $0) && cd .. && pwd)
 
 echo "### Create symlinks for dotfiles"
 ln -sf $BASE_DIR/bash_profile ~/.bash_profile
-ln -sf $BASE_DIR/bashrc ~/.bashrc
-ln -sf $BASE_DIR/gitconfig ~/.gitconfig
-ln -sf $BASE_DIR/tigrc ~/.tigrc
-ln -sf $BASE_DIR/nvim ~/.config/nvim
+ln -sf $BASE_DIR/bashrc       ~/.bashrc
+ln -sf $BASE_DIR/nvim         ~/.config/nvim
+ln -sf $BASE_DIR/gitconfig    ~/.gitconfig
+ln -sf $BASE_DIR/tigrc        ~/.tigrc
 
 echo "### Install dein.vim (neovim)"
 DEIN_CACHE_DIR=~/.cache/dein

@@ -1,6 +1,9 @@
+C_RED="\[\e[31m\]"
+C_GREEN="\[\e[32m\]"
+C_BLUE="\[\e[34m\]"
+C_RESET="\[\e[0m\]"
+
 # alias
-alias vim='nvim'
-alias vimdiff='nvim -d'
 alias cd='pushd > /dev/null'
 alias cdh='cd ~'
 alias ch='cd ~'
@@ -10,10 +13,11 @@ alias ls='ls -CFGx'
 alias l='ls -lG'
 alias ll='ls -lhaG'
 alias la='ls -alG'
+alias vim='nvim'
+alias vimdiff='nvim -d'
 alias diff='colordiff'
 alias dk='docker'
 
-# 補完
 # brew "bash-completion"
 BASH_COMPLETION_PATH=/usr/local/etc/profile.d/bash_completion.sh
 if [ -r ${BASH_COMPLETION_PATH} ]; then
@@ -30,12 +34,8 @@ if [ -r ${GIT_PROMPT_PATH} -a -r ${GIT_COMPLETION_PATH} ]; then
 fi
 
 # prompt
-C_RED="\[\e[31m\]"
-C_GREEN="\[\e[32m\]"
-C_BLUE="\[\e[34m\]"
-C_CYAN="\[\e[36m\]"
-C_RESET="\[\e[0m\]"
-PS1="${C_BLUE}[\H \w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
+PS1="${C_BLUE}[\w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
+
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$PATH:/Users/rtakasuke/.nodebrew/current/bin
