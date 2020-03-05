@@ -27,4 +27,4 @@ jobs:
       run: source ~/.bashrc
 
     - name: debug alias
-      run: alias vim
+      run: alias
