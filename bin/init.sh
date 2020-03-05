@@ -2,6 +2,9 @@
 
 BASE_DIR=$(cd $(dirname $0) && cd .. && pwd)
 
+# CIエラー処理用
+set -e
+
 echo "### Create symlinks for dotfiles"
 ln -sf $BASE_DIR/bash_profile ~/.bash_profile
 ln -sf $BASE_DIR/bashrc       ~/.bashrc
