@@ -17,11 +17,11 @@ jobs:
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
-    - name: source .bash_profile
+    - name: Read .bash_profile
       run: source ~/.bash_profile
 
-    - name: source .bashrc
+    - name: Read .bashrc
       run: source ~/.bashrc
 
-    - name: test alias
-      run: which vim
+    - name: debug alias
+      run: alias vim
