@@ -9,13 +9,9 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# らくらくオプション移動
-stty stop undef
-
 # neovim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
-
 
 # .bashrc
 if [ -f ~/.bashrc ]; then

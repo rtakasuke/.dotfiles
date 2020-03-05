@@ -36,6 +36,11 @@ fi
 # prompt
 PS1="${C_BLUE}[\w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
 
+# 端末ロック無効化
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH=$PATH:/Users/rtakasuke/.nodebrew/current/bin
