@@ -16,3 +16,6 @@ jobs:
 
     - name: init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
+
+    - name: test alias
+      run: which vim

@@ -2,7 +2,7 @@
 
 BASE_DIR=$(cd $(dirname $0) && cd .. && pwd)
 
-# CIエラー処理用
+# CI 例外処理用
 set -e
 
 echo "### Create symlinks for dotfiles"
@@ -23,5 +23,4 @@ else
     echo "dein.vim already installed."
 fi
 
-hoogehoge
 echo -e "\n[Finish]"
