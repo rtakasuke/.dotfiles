@@ -14,13 +14,13 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - name: init.sh
-      run: ${GITHUB_WORKSPACE}/bin/init.sh
+    - name: Run init.sh
+      run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
     - name: source .bash_profile
-      run: source .bash_profile
+      run: source ~/.bash_profile
 
-    - name: source .bashrc
+    - name: source ~/.bashrc
       run: source .bashrc
 
     - name: test alias
