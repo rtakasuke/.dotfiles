@@ -20,4 +20,5 @@ else
     echo "dein.vim already installed."
 fi
 
+hoogehoge
 echo -e "\n[Finish]"
