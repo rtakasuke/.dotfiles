@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  init:
     runs-on: macos-latest
 
     steps:
@@ -17,5 +17,11 @@ jobs:
     - name: init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
 
-    - name: alias vim
-      run: alias vim
+    - name: source .bash_profile
+      run: source .bash_profile
+
+    - name: source .bashrc
+      run: source .bashrc
+
+    - name: test alias
+      run: which vim
