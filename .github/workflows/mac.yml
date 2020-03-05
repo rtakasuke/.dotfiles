@@ -1,0 +1,24 @@
+name: macos
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: brew bundle
+      run: brew bundle
+
+    - name: init.sh
+      run: ${GITHUB_WORKSPACE}/bin/init.sh
+
+    - name: fail
+      run: hoge
