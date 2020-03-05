@@ -1,16 +1,22 @@
 #!/bin/bash
 
 BASE_DIR=$(cd $(dirname $0) && cd .. && pwd)
+CONFIG_DIR=~/.config
 
 # CI 例外処理用
 set -e
 
+if [ ! -d ${CONFIG_DIR} ]
+then
+    mkdir ${CONFIG_DIR}
+fi
+
 echo "### Create symlinks for dotfiles"
 ln -sf $BASE_DIR/bash_profile ~/.bash_profile
 ln -sf $BASE_DIR/bashrc       ~/.bashrc
-ln -sf $BASE_DIR/nvim         ~/.config/nvim
 ln -sf $BASE_DIR/gitconfig    ~/.gitconfig
 ln -sf $BASE_DIR/tigrc        ~/.tigrc
+ln -sf $BASE_DIR/nvim         ${CONFIG_DIR}/nvim
 
 echo "### Install dein.vim (neovim)"
 DEIN_CACHE_DIR=~/.cache/dein
