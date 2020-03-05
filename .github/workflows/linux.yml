@@ -1,4 +1,4 @@
-name: ci-macos
+name: ci-linux
 
 on:
   push:
@@ -7,15 +7,12 @@ on:
     branches: [ master ]
 
 jobs:
-  init:
-    runs-on: macos-latest
+  ci:
+    runs-on: ubuntsu-latest
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # - name: brew bundle
-    #   run: brew bundle
 
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
@@ -23,8 +20,8 @@ jobs:
     - name: source .bash_profile
       run: source ~/.bash_profile
 
-    - name: source ~/.bashrc
-      run: source .bashrc
+    - name: source .bashrc
+      run: source ~/.bashrc
 
     - name: test alias
       run: which vim
