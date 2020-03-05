@@ -1,4 +1,4 @@
-name: macos
+name: ci-macos
 
 on:
   push:
@@ -17,8 +17,5 @@ jobs:
     - name: brew bundle
       run: brew bundle
 
-    - name: init.sh
+    - name: set -e | init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
-
-    - name: fail
-      run: hoge
