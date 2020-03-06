@@ -15,10 +15,16 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Run init.sh
-      run: bash -x ${GITHUB_WORKSPACE}/bin/init.sh; echo $?
+      run: |
+        bash -x ${GITHUB_WORKSPACE}/bin/init.sh 2> error.log
+        if [ ! -s error.log ]; then true; else false; fi
 
     - name: Load .bash_profile
-      run: bash ~/.bash_profile; echo $?
+      run: |
+        bash ~/.bash_profile 2> error.log
+        if [ ! -s error.log ]; then true; else false; fi
 
     - name: Load .bashrc
-      run: bash ~/.bashrc; echo $?
+      run: |
+        bash ~/.bashrc 2> error.log
+        if [ ! -s error.log ]; then true; else false; fi
