@@ -18,7 +18,7 @@ jobs:
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
     - name: Load .bash_profile
-      run: bash ~/.bash_profile || false
+      run: bash ~/.bash_profile; echo $?
 
     - name: Load .bashrc
-      run: bash ~/.bashrc || false
+      run: bash ~/.bashrc; echo $?
