@@ -16,12 +16,16 @@ jobs:
 
     # - name: Run brew bundle
     #   run: brew bundle
+    #   shell: bash
 
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
+      shell: bash
 
     - name: Load .bash_profile
       run: bash ~/.bash_profile; echo $?
+      shell: bash
 
     - name: Load .bashrc
       run: bash ~/.bashrc; echo $?
+      shell: bash
