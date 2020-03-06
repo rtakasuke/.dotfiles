@@ -1,4 +1,4 @@
-name: ci-macos
+name: macos
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  ci:
+  macos-test:
     runs-on: macos-latest
 
     steps:
@@ -22,13 +22,16 @@ jobs:
       run: |
         sh -x ${GITHUB_WORKSPACE}/bin/init.sh
         if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
+      shell: bash
 
     - name: Load .bash_profile
       run: |
         bash ~/.bash_profile
         if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
+      shell: bash
 
     - name: Load .bashrc
       run: |
         bash ~/.bashrc
         if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
+      shell: bash
