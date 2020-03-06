@@ -19,13 +19,13 @@ jobs:
     #   shell: bash
 
     - name: Run init.sh
-      run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
-      shell: bash
+      run: |
+        sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
     - name: Load .bash_profile
-      run: bash ~/.bash_profile; echo $?
-      shell: bash
+      run: |
+        bash ~/.bash_profile
 
     - name: Load .bashrc
-      run: bash ~/.bashrc; echo $?
-      shell: bash
+      run: |
+        bash ~/.bashrc
