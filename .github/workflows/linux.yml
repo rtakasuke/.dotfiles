@@ -17,14 +17,14 @@ jobs:
     - name: Run init.sh
       run: |
         sh -x ${GITHUB_WORKSPACE}/bin/init.sh
-        if [ ${PIPESTATUS[0]} = 0 ];then false;fi
+        if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
 
     - name: Load .bash_profile
       run: |
         bash ~/.bash_profile
-        if [ ${PIPESTATUS[0]} = 0 ];then false;fi
+        if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
 
     - name: Load .bashrc
       run: |
         bash ~/.bashrc
-        if [ ${PIPESTATUS[0]} = 0 ];then false;fi
+        if [ ${PIPESTATUS[0]} != 0 ];then echo ${PIPESTATUS[0]};false;fi
