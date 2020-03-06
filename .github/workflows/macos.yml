@@ -17,9 +17,6 @@ jobs:
     - name: Run brew bundle
       run: brew bundle
 
-    - name: test false
-      run: false
-
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
