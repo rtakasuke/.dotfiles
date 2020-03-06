@@ -17,8 +17,10 @@ jobs:
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
+    # 出力があったらNG
     - name: Load .bash_profile
-      run: source ~/.bash_profile 2>&1 false
+      run: bash ~/.bash_profile 2>&1 false
 
+    # 出力があったらNG
     - name: Load .bashrc
-      run: source ~/.bashrc 2>&1 false
+      run: bash ~/.bashrc 2>&1 false
