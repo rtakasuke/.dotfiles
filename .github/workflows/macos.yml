@@ -20,11 +20,8 @@ jobs:
     - name: Run init.sh
       run: sh -x ${GITHUB_WORKSPACE}/bin/init.sh
 
-    - name: Read .bash_profile
-      run: source ~/.bash_profile
+    - name: Load .bash_profile
+      run: source ~/.bash_profile 2> | xargs false
 
-    - name: Read .bashrc
-      run: source ~/.bashrc
-
-    - name: debug alias
-      run: alias
+    - name: Load .bashrc
+      run: source ~/.bashrc 2> | xargs false
