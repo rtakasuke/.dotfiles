@@ -1,0 +1,27 @@
+name: macos
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  macos-test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install shellcheck
+      run: brew install shellcheck
+
+    # Lint check
+    - name: bin/init.sh
+      run: shellcheck ${GITHUB_WORKSPACE}/bin/init.sh
+
+    - name: .bash_profile
+      run: shellcheck ${GITHUB_WORKSPACE}/bash_profile
+
+    - name: .bashrc
+      run: shellcheck ${GITHUB_WORKSPACE}/bashrc

@@ -11,29 +11,23 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    # Error Check
     - name: Run brew bundle
       run: brew bundle
 
     - name: Run init.sh
       run: |
-        bash ${GITHUB_WORKSPACE}/bin/init.sh 2> error.log
-        echo "----------------------------------------------------"
-        cat error.log
+        bash ${GITHUB_WORKSPACE}/bin/init.sh 2> error.log; cat error.log
         if [ ! -s error.log ]; then true; else false; fi
 
     - name: Load .bash_profile
       run: |
-        bash ~/.bash_profile 2> error.log
-        echo "----------------------------------------------------"
-        cat error.log
+        bash ~/.bash_profile 2> error.log; cat error.log
         if [ ! -s error.log ]; then true; else false; fi
 
     - name: Load .bashrc
       run: |
-        bash ~/.bashrc 2> error.log
-        echo "----------------------------------------------------"
-        cat error.log
+        bash ~/.bashrc 2> error.log; cat error.log
         if [ ! -s error.log ]; then true; else false; fi
