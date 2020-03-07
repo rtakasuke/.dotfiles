@@ -28,5 +28,5 @@ jobs:
 
     - name: Check nvim/init.vim
       run: |
-        pip install pathlib vim-vint
+        pip install pathlib typing vim-vint
         vint ${GITHUB_WORKSPACE}/nvim/init.vim
