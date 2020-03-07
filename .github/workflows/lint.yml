@@ -28,6 +28,6 @@ jobs:
 
     - name: Check nvim/init.vim
       run: |
-        pip install pathlib typing enum
+        pip install pathlib typing enum unique
         pip install vim-vint
         vint ${GITHUB_WORKSPACE}/nvim/init.vim
