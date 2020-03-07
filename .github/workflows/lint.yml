@@ -17,11 +17,16 @@ jobs:
       run: brew install shellcheck
 
     # Lint check
-    - name: bin/init.sh
+    - name: Check bin/init.sh
       run: shellcheck ${GITHUB_WORKSPACE}/bin/init.sh
 
-    - name: .bash_profile
+    - name: Check .bash_profile
       run: shellcheck ${GITHUB_WORKSPACE}/bash_profile --exclude=SC2148,SC1090
 
-    - name: .bashrc
+    - name: Check .bashrc
       run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
+
+    - name: Check nvim/init.vim
+      run: |
+        pip install vim-vint
+        vint ${GITHUB_WORKSPACE}/nvim/init.vim
