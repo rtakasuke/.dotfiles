@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  macos-test:
+  lint-check:
     runs-on: macos-latest
 
     steps:
