@@ -5,5 +5,5 @@
 ## setup
 ```
 $ brew bundle
-$ bin/setup.sh
+$ bin/init.sh
 ```
