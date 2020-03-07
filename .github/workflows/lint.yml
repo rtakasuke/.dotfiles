@@ -13,8 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install shellcheck
-      run: brew install shellcheck
+    - name: init
+      run: |
+        brew install shellcheck
+        pip install --upgrade pip
+        pip install vim-vint
 
     # Lint check
     - name: Check bin/init.sh
@@ -27,7 +30,4 @@ jobs:
       run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
 
     - name: Check nvim/init.vim
-      run: |
-        pip install pathlib typing unique enum
-        pip install vim-vint
-        vint ${GITHUB_WORKSPACE}/nvim/init.vim
+      run: vint ${GITHUB_WORKSPACE}/nvim/init.vim
