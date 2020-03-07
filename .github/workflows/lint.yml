@@ -21,7 +21,7 @@ jobs:
       run: shellcheck ${GITHUB_WORKSPACE}/bin/init.sh
 
     - name: .bash_profile
-      run: shellcheck ${GITHUB_WORKSPACE}/bash_profile
+      run: shellcheck ${GITHUB_WORKSPACE}/bash_profile --exclude=SC2148,SC1090
 
     - name: .bashrc
-      run: shellcheck ${GITHUB_WORKSPACE}/bashrc
+      run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090

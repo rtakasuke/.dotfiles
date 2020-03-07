@@ -1,4 +1,3 @@
-C_RED="\[\e[31m\]"
 C_GREEN="\[\e[32m\]"
 C_BLUE="\[\e[34m\]"
 C_RESET="\[\e[0m\]"
@@ -21,15 +20,19 @@ alias dk='docker'
 # brew "bash-completion"
 BASH_COMPLETION_PATH=/usr/local/etc/profile.d/bash_completion.sh
 if [ -r ${BASH_COMPLETION_PATH} ]; then
+    # shellcheck disable=SC1090
     . ${BASH_COMPLETION_PATH}
 fi
 
 ## brew "git"
 GIT_PROMPT_PATH=/usr/local/etc/bash_completion.d/git-prompt.sh
 GIT_COMPLETION_PATH=/usr/local/etc/bash_completion.d/git-completion.bash
-if [ -r ${GIT_PROMPT_PATH} -a -r ${GIT_COMPLETION_PATH} ]; then
+if [ -r ${GIT_PROMPT_PATH} ] && [ -r ${GIT_COMPLETION_PATH} ]; then
+    # shellcheck disable=SC1090
     source ${GIT_PROMPT_PATH}
+    # shellcheck disable=SC1090
     source ${GIT_COMPLETION_PATH}
+    # shellcheck disable=SC2034
     GIT_PS1_SHOWDIRTYSTATE=true
 fi
 
