@@ -39,4 +39,4 @@ jobs:
       run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
 
     - name: Check nvim/init.vim
-      run: vint ${GITHUB_WORKSPACE}/nvim/init.vim
+      run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -ctV --enable-neovim

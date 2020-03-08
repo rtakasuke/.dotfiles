@@ -6,12 +6,8 @@ augroup END
 "------------------------------------------
 " プラグイン管理
 "------------------------------------------
-if &compatible
-  set nocompatible
-endif
-
-let s:dein_cache_dir = "~/.cache/dein/"
-let s:dein_conf_dir = "~/.config/nvim/"
+let s:dein_cache_dir = '~/.caphe/dein/'
+let s:dein_conf_dir = '~/.config/nvim/'
 
 if has('vim_starting')
   set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -19,8 +15,8 @@ endif
 
 if dein#load_state(s:dein_cache_dir)
   call dein#begin(expand(s:dein_cache_dir))
-  call dein#load_toml(s:dein_conf_dir . "dein.toml")
-  call dein#load_toml(s:dein_conf_dir . "dein_statusline.toml")
+  call dein#load_toml(s:dein_conf_dir . 'dein.toml')
+  call dein#load_toml(s:dein_conf_dir . 'dein_statusline.toml')
   call dein#end()
   call dein#save_state()
 endif

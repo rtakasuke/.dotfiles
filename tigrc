@@ -1,1 +1,7 @@
-bind status P !git push origin
+set main-view   = id date author:email-user commit-title:graph=yes,refs=yes                     # add commit id
+set blame-view  = date:default author:email-user id:yes,color line-number:yes,interval=1 text   # add line number
+set pager-view  = line-number:yes,interval=1 text                                               # add line number
+set stage-view  = line-number:yes,interval=1 text                                               # add line number
+set log-view    = line-number:yes,interval=1 text                                               # add line number
+set blob-view   = line-number:yes,interval=1 text                                               # add line number
+set diff-view   = line-number:yes,interval=1 text:yes,commit-title-overflow=no                  # add line number
