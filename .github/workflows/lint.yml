@@ -22,7 +22,7 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
 
-    - name: Install Required packages
+    - name: Install required packages
       run: |
         brew install shellcheck
         pip install --upgrade pip
@@ -39,4 +39,7 @@ jobs:
       run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
 
     - name: Check nvim/init.vim
-      run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -ctV --enable-neovim
+      run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -cstV --enable-neovim
+
+    - name: Check nvim/*.toml
+      run: curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh -s ${GITHUB_WORKSPACE}/nvim/*.toml
