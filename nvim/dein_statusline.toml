@@ -18,6 +18,7 @@ hook_add = '''
 #--------------------------------------------------------
 #PLUGIN lightline.vim
 #--------------------------------------------------------
+hock_add = '''
   let g:lightline = {
         \ 'colorscheme': 'wombat',
         \ 'mode_map': { 'c': 'NORMAL' },
