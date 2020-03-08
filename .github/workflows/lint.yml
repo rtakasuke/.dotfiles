@@ -43,5 +43,5 @@ jobs:
 
     - name: Check nvim/*.toml
       run: |
-          curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh; true
+          curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh || true
           find ${GITHUB_WORKSPACE}/nvim/*.toml -type f | xargs -I={} ${GITHUB_WORKSPACE}/tomlcheck --file {}
