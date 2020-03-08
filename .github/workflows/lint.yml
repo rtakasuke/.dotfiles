@@ -42,4 +42,6 @@ jobs:
       run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -cstV --enable-neovim
 
     - name: Check nvim/*.toml
-      run: curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh -s ${GITHUB_WORKSPACE}/nvim/*.toml
+      run: |
+          curl -sL https://raw.githubusercontent.com/vmchale/tomlcheck/master/sh/check | sh; true
+          find ${GITHUB_WORKSPACE}/nvim/*.toml -type f | xargs -I={} ${GITHUB_WORKSPACE}/tomlcheck --file {}
