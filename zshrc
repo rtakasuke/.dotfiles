@@ -38,5 +38,3 @@ alias diff='colordiff'
 alias dk='docker'
 
 zstyle ':completion:*:default' menu select=1
-
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
