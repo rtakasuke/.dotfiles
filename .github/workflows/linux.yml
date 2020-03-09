@@ -15,7 +15,7 @@ jobs:
 
     # Error Check
     - name: Install apt packages
-      run: apt-get install zsh
+      run: apt install zsh
 
     - name: Run bin/init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
