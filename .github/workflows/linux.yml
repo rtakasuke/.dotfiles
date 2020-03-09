@@ -14,8 +14,8 @@ jobs:
     - uses: actions/checkout@v2
 
     # Error Check
-    - name: Install yum packages
-      run: yum install zsh
+    - name: Install apt packages
+      run: apt-get install zsh
 
     - name: Run bin/init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
