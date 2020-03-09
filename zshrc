@@ -9,7 +9,6 @@ setopt correct
 setopt correct_all
 
 ## 補完
-autoload -U compinit; compinit
 setopt auto_cd
 setopt auto_list
 setopt auto_menu
