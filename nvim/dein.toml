@@ -2,33 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 #------------------------------------------------------------
-# ファイル操作・ファイル検索
-#------------------------------------------------------------
-
-[[plugins]]
-# vim起動時に最近開いたファイルを表示
-repo = 'mhinz/vim-startify'
-hook_add = '''
-  let g:startify_custom_header =
-    \ map(['Vim '.v:version]+split(system('date'), '\n'), '"   ". v:val')+ ['','']
-  let g:startify_custom_indices = [
-    \ 'a', 'c', 'd', 'f', 'g', 'h', 'l', 'm', 'n', 'o', 'p', 'r', 'u', 'w', 'x',
-    \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    \  ]
-  let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
-'''
-
-[[plugins]]
-# C-e : ディレクトリをツリー表示
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-  let      NERDTreeShowHidden = 1
-  nnoremap <silent><C-e> :NERDTreeToggle<CR>
-'''
-
-
-#------------------------------------------------------------
 # カーソル移動・スクロール
 #------------------------------------------------------------
 
@@ -50,6 +23,10 @@ hook_add = '''
 [[plugins]]
 # %による対応括弧へのジャンプ機能を拡張
 repo = 'tmhedberg/matchit'
+
+[[plugins]]
+# 選択範囲を('*'や'#'で)検索
+repo = 'thinca/vim-visualstar'
 
 
 #------------------------------------------------------------
@@ -104,17 +81,51 @@ hook_add = '''
 
 
 #------------------------------------------------------------
-# その他の精鋭たち
+# ファイル操作・ファイル検索
 #------------------------------------------------------------
 
 [[plugins]]
-# \rでプログラム実行できる
-repo = 'thinca/vim-quickrun'
+# vim起動時に最近開いたファイルを表示
+repo = 'mhinz/vim-startify'
+hook_add = '''
+  let g:startify_custom_header =
+    \ map(['Vim '.v:version]+split(system('date'), '\n'), '"   ". v:val')+ ['','']
+  let g:startify_custom_indices = [
+    \ 'a', 'c', 'd', 'f', 'g', 'h', 'l', 'm', 'n', 'o', 'p', 'r', 'u', 'w', 'x',
+    \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+    \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    \  ]
+  let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
+'''
 
 [[plugins]]
-# (normal/visual) gcc : コメントアウト
-repo = 'tomtom/tcomment_vim'
+# C-t : ディレクトリをツリー表示
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  let      NERDTreeShowHidden = 1
+  nnoremap <silent><C-t> :NERDTreeToggle<CR>
+'''
 
+[[plugins]]
+# :Ack : ack検索ができる
+repo = 'mileszs/ack.vim'
+
+
+#------------------------------------------------------------
+# Git
+#------------------------------------------------------------
+[[plugins]]
+# https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+  set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
+  set laststatus=2
+'''
+
+
+#--------------------------------------------------------
+# 表示
+#--------------------------------------------------------
 [[plugins]]
 # 変更差分を可視化
 repo = 'airblade/vim-gitgutter'
@@ -124,28 +135,85 @@ hook_add = '''
 '''
 
 [[plugins]]
-# 選択範囲を('*'や'#'で)検索
-repo = 'thinca/vim-visualstar'
-
-[[plugins]]
 # ログファイルの色付け
 repo = 'vim-scripts/AnsiEsc.vim'
 
+[[plugins]]
+# status line
+repo = 'itchyny/lightline.vim'
+hock_add = '''
+    # https://itchyny.hatenablog.com/entry/20130828/1377653592
+    let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ 'mode_map': {'c': 'NORMAL'},
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+            \ },
+            \ 'component_function': {
+            \   'modified': 'LightlineModified',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'filename': 'LightlineFilename',
+            \   'fileformat': 'LightlineFileformat',
+            \   'filetype': 'LightlineFiletype',
+            \   'fileencoding': 'LightlineFileencoding',
+            \   'mode': 'LightlineMode'
+            \ }
+            \ }
+
+    function! LightlineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction
+
+    function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    endfunction
+
+    function! LightlineFilename()
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+            \  &ft == 'unite' ? unite#get_status_string() :
+            \  &ft == 'vimshell' ? vimshell#get_status_string() :
+            \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endfunction
+
+    function! LightlineFugitive()
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+        return fugitive#head()
+    else
+        return ''
+    endif
+    endfunction
+
+    function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+
+    function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+
+    function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
+
+    function! LightlineMode()
+    return winwidth(0) > 60 ? lightline#mode() : ''
+    endfunction
+'''
+
 
 #------------------------------------------------------------
-# 補欠メンバー
+# 編集
 #------------------------------------------------------------
+
+[[plugins]]
+# (normal/visual) gcc : コメントアウト
+repo = 'tomtom/tcomment_vim'
 
 [[plugins]]
 # 囲み文字の入力補助
 #  囲み文字の削除 ds (delete surround)
 #  囲み文字の変更 cs (change surrount)
 repo = 'tpope/vim-surround'
-
-[[plugins]]
-# スニペット補完
-repo = 'msanders/snipmate.vim'
-
-[[plugins]]
-# :Ack : ack検索ができる
-repo = 'mileszs/ack.vim'

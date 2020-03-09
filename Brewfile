@@ -6,6 +6,7 @@ tap "rcmdnk/file"
 
 brew "ack"
 brew "bash-completion"
+brew "colordiff"
 brew "docker"
 brew "git"
 brew "jq"

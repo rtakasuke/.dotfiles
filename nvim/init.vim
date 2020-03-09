@@ -6,7 +6,7 @@ augroup END
 "------------------------------------------
 " プラグイン管理
 "------------------------------------------
-let s:dein_cache_dir = '~/.caphe/dein/'
+let s:dein_cache_dir = '~/.cache/dein/'
 let s:dein_conf_dir = '~/.config/nvim/'
 
 if has('vim_starting')
@@ -16,7 +16,6 @@ endif
 if dein#load_state(s:dein_cache_dir)
   call dein#begin(expand(s:dein_cache_dir))
   call dein#load_toml(s:dein_conf_dir . 'dein.toml')
-  call dein#load_toml(s:dein_conf_dir . 'dein_statusline.toml')
   call dein#end()
   call dein#save_state()
 endif
@@ -94,8 +93,8 @@ hi LineNr ctermfg=59
 " カーソル行(列)をハイライト
 set cursorline
 set cursorcolumn
-hi  CursorLine   term=reverse cterm=none ctermbg=237
-hi  CursorColumn term=reverse cterm=none ctermbg=237
+hi  CursorLine   term=reverse cterm=none ctermbg=238
+hi  CursorColumn term=reverse cterm=none ctermbg=238
 
 " 対応括弧のハイライト
 set showmatch
@@ -230,12 +229,6 @@ map Y y$
 " インクリ&デクリメント
 nnoremap + <C-a>
 nnoremap - <C-x>
-
-" 空行を挿入
-"  10<Space>o : 10行挿入
-nnoremap <Space>o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <Space>O :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-
 " gs : らくらく置換
 nnoremap gs :<C-u>%s//g<Left><Left>
 vnoremap gs :s//g<Left><Left>
