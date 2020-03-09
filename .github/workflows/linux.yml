@@ -14,9 +14,6 @@ jobs:
     - uses: actions/checkout@v2
 
     # Error Check
-    - name: Install apt packages
-      run: apt install zsh
-
     - name: Run bin/init.sh
       run: ${GITHUB_WORKSPACE}/bin/init.sh
 
@@ -29,15 +26,3 @@ jobs:
       run: |
         bash ~/.bashrc 2> error.log; cat error.log
         if [ -s error.log ]; then false; fi
-
-    - name: Load .zshenv
-      run: |
-        zsh ~/.zshenv 2> error.log; cat error.log
-        if [ -s error.log ]; then false; fi
-      shell: zsh
-
-    - name: Load .zshrc
-      run: |
-        zsh ~/.zshrc 2> error.log; cat error.log
-        if [ -s error.log ]; then false; fi
-      shell: zsh
