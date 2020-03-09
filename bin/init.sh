@@ -16,6 +16,8 @@ ln -sf "$BASE_DIR"/bash_profile ~/.bash_profile
 ln -sf "$BASE_DIR"/bashrc       ~/.bashrc
 ln -sf "$BASE_DIR"/gitconfig    ~/.gitconfig
 ln -sf "$BASE_DIR"/tigrc        ~/.tigrc
+ln -sf "$BASE_DIR"/zshenv       ~/.zshenv
+ln -sf "$BASE_DIR"/zshrc        ~/.zshrc
 ln -sf "$BASE_DIR"/nvim         "$CONFIG_DIR"/nvim
 
 echo "### Install dein.vim (neovim)"

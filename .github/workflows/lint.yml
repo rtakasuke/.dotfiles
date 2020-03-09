@@ -38,6 +38,12 @@ jobs:
     - name: Check .bashrc
       run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
 
+    - name: Check .zshenv
+      run: shellcheck ${GITHUB_WORKSPACE}/zshenv --exclude=SC2148,SC1090
+
+    - name: Check .zshrc
+      run: shellcheck ${GITHUB_WORKSPACE}/zshrc --exclude=SC2148,SC1090
+
     - name: Check nvim/init.vim
       run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -cstV --enable-neovim
 

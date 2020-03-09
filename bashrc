@@ -8,6 +8,9 @@ alias cdh='cd ~'
 alias ch='cd ~'
 alias d='dirs -v'
 alias gd='dirs -v; echo -n "number: "; read newdir; pushd > /dev/null +"$newdir"'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ls='ls -CFGx'
 alias l='ls -lG'
 alias ll='ls -lhaG'
@@ -24,7 +27,8 @@ if [ -r ${BASH_COMPLETION_PATH} ]; then
     . ${BASH_COMPLETION_PATH}
 fi
 
-## brew "git"
+# prompt
+# brew "git"
 GIT_PROMPT_PATH=/usr/local/etc/bash_completion.d/git-prompt.sh
 GIT_COMPLETION_PATH=/usr/local/etc/bash_completion.d/git-completion.bash
 if [ -r ${GIT_PROMPT_PATH} ] && [ -r ${GIT_COMPLETION_PATH} ]; then
@@ -34,10 +38,11 @@ if [ -r ${GIT_PROMPT_PATH} ] && [ -r ${GIT_COMPLETION_PATH} ]; then
     source ${GIT_COMPLETION_PATH}
     # shellcheck disable=SC2034
     GIT_PS1_SHOWDIRTYSTATE=true
-fi
 
-# prompt
-PS1="${C_BLUE}[\w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
+    PS1="${C_BLUE}[\w]${C_RESET} ${C_GREEN}\$(__git_ps1)${C_RESET}\n$ "
+else
+    PS1="${C_BLUE}[\w]${C_RESET}\n$ "
+fi
 
 # 端末ロック無効化
 if [[ -t 0 ]]; then
