@@ -52,10 +52,10 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}+%f"  # %c
-zstyle ':vcs_info:git:*' unstagedstr "%F{green}*%f" # %u
-zstyle ':vcs_info:*' formats " %F{green}(%b %u%c%F{green})%f"
-zstyle ':vcs_info:*' actionformats " %F{green}(%b %u%c%F{green}|%f%F{red}%a%f%F{green})%f"
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow} +%f"  # %c
+zstyle ':vcs_info:git:*' unstagedstr "%F{green} *%f" # %u
+zstyle ':vcs_info:*' formats " %F{green}(%b%u%c%F{green})%f"
+zstyle ':vcs_info:*' actionformats " %F{green}(%b%u%c%F{green}|%f%F{red}%a%f%F{green})%f"
 PROMPT="%F{blue}[%m:%~]%f "
 PROMPT=$PROMPT'${vcs_info_msg_0_}'
 PROMPT="$PROMPT
