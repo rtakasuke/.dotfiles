@@ -3,6 +3,10 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
+setopt notify             # background プロセスの状態変化を即時通知
+setopt no_beep            # ビープ音停止
+setopt print_eight_bit    # 8bit 文字を有効化
+
 # キーバインド
 bindkey -d
 bindkey -e
@@ -26,20 +30,30 @@ alias diff='colordiff'
 alias hist='history'
 alias dk='docker'
 
-# 補完・ディレクトリ移動
-setopt auto_cd  # ディレクトリ名のみで移動
-setopt auto_list  # 補完候補を一覧表示
-setopt auto_menu  # tab連打
-setopt list_packed  # リストをできるだけ詰める
-setopt extended_glob  # glob 展開
+autoload -U compinit && compinit -u  # コマンド補完
+autoload history-search-end          # 履歴検索時のカーソルを末尾に置く
+
+setopt auto_cd            # ディレクトリ名のみで移動
+setopt auto_list          # 補完候補を一覧表示
+setopt auto_menu          # tab連打
+setopt auto_param_slash   # ディレクトリ名の補完で末尾に '/' を付与
+setopt complete_in_word   # 単語の途中での Tab 補完
+setopt correct            # コマンドのスペル訂正を提案
+setopt extended_glob      # glob 展開
+setopt globdots           # ドットファイルも候補に入る
+setopt list_types         # ls -F
+setopt list_packed        # リストをできるだけ詰める
+setopt magic_equal_subst  # '=' より先も補完
+setopt mark_dirs          # ファイル名展開でディレクトリ末尾に '/' を付与
+setopt print_exit_value   # 戻り値が 0 以外の場合終了コードを表示
+setopt pushd_ignore_dups  # ディレクトリスタックに重複する物は古い方を削除
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区別せずに補完
 
 # prompt
 autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+precmd() { vcs_info }
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow} +%f"  # %c
@@ -50,27 +64,14 @@ local cline=$'\n'
 local p_dir="%F{blue}[%m:%~]%f "
 local p_git='${vcs_info_msg_0_}'
 local p_mark="%B%(?,%F{green},%F{red})>%f%b"
-PROMPT="$cline$p_dir $p_git$cline$p_mark "
+PROMPT="$p_dir $p_git$cline$p_mark "
 
 # history
 HISTSIZE=100000
 SAVEHIST=100000
-setopt hist_ignore_all_dups  # 同じコマンドは残さない
+setopt hist_expand         # 補完時に履歴を自動的に展開
+setopt bang_hist           # '!'を使った履歴展開を行う
+setopt hist_no_store       # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks  # 余分なスペースを削除
-
-# others
-autoload history-search-end
-autoload -U compinit && compinit -u  # コマンド補完
-
-setopt auto_param_slash
-setopt complete_in_word
-setopt correct
-setopt correct_all
-setopt list_types
-setopt magic_equal_subst
-setopt mark_dirs
-setopt no_beep  # ビープ音停止
-setopt notify  # background プロセスの状態変化を即時通知
-setopt print_eight_bit  # 8bit 文字を有効化
-setopt print_exit_value  # 終了ステータスが 0 以外のときにステータスを表示
-
+setopt hist_save_no_dups   # 入力したコマンドが直前のものと同一なら古いコマンドのほうを削除する
+setopt share_history       # 他のシェルのヒストリをリアルタイムで共有する
