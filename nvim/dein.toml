@@ -104,6 +104,7 @@ repo = 'scrooloose/nerdtree'
 hook_add = '''
   let      NERDTreeShowHidden = 1
   nnoremap <silent><C-t> :NERDTreeToggle<CR>
+  let g:NERDTreeWinSize=50
 '''
 
 [[plugins]]
