@@ -32,9 +32,9 @@ alias diff='colordiff'
 alias hist='history'
 alias dk='docker'
 
-autoload -Uz colors;  colors          # 色を使う
+autoload -Uz colors;  colors       # 色を使う
 autoload -U compinit; compinit -u  # コマンド補完
-autoload history-search-end          # 履歴検索時のカーソルを末尾に置く
+autoload history-search-end        # 履歴検索時のカーソルを末尾に置く
 
 setopt auto_cd            # ディレクトリ名のみで移動
 setopt auto_list          # 補完候補を一覧表示
@@ -58,6 +58,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区�
 autoload -Uz vcs_info
 precmd() { vcs_info }
 setopt prompt_subst
+zstyle ':vcs_info:*' enable git                      # git だけ有効化
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow} +%f"  # %c
 zstyle ':vcs_info:git:*' unstagedstr "%F{green} *%f" # %u
