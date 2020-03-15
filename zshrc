@@ -6,6 +6,8 @@ export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30
 setopt notify             # background プロセスの状態変化を即時通知
 setopt no_beep            # ビープ音停止
 setopt print_eight_bit    # 8bit 文字を有効化
+setopt ignoreeof          # ^d によるログアウト抑止
+setopt no_flow_control    # ^s, ^q によるのロック＆解除を抑止
 
 # キーバインド
 bindkey -d
@@ -30,7 +32,8 @@ alias diff='colordiff'
 alias hist='history'
 alias dk='docker'
 
-autoload -U compinit && compinit -u  # コマンド補完
+autoload -Uz colors;  colors          # 色を使う
+autoload -U compinit; compinit -u  # コマンド補完
 autoload history-search-end          # 履歴検索時のカーソルを末尾に置く
 
 setopt auto_cd            # ディレクトリ名のみで移動
@@ -75,3 +78,7 @@ setopt hist_no_store       # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks  # 余分なスペースを削除
 setopt hist_save_no_dups   # 入力したコマンドが直前のものと同一なら古いコマンドのほうを削除する
 setopt share_history       # 他のシェルのヒストリをリアルタイムで共有する
+
+# 単語の一部として扱われる文字
+# デフォルトから '/' だけ除外
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'

@@ -232,4 +232,3 @@ nnoremap - <C-x>
 " gs : らくらく置換
 nnoremap gs :<C-u>%s//g<Left><Left>
 vnoremap gs :s//g<Left><Left>
-
