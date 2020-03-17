@@ -112,10 +112,10 @@ hi    ZenkakuSpace cterm=underline ctermfg=lightblue guibg=white
 match ZenkakuSpace /　/
 
 " vimdiff
-hi DiffAdd    ctermbg=65   ctermfg=black
-hi DiffChange ctermbg=101  ctermfg=black
-hi DiffDelete ctermbg=96   ctermfg=black
-hi DiffText   ctermbg=248  ctermfg=black
+hi DiffAdd    ctermbg=65  ctermfg=black
+hi DiffChange ctermbg=101 ctermfg=black
+hi DiffDelete ctermbg=96  ctermfg=black
+hi DiffText   ctermbg=248 ctermfg=black
 
 " ポップアップ
 set pumheight=10
@@ -144,18 +144,28 @@ nnoremap # #N
 
 
 "------------------------------------------
-" カーソル移動・スクロール・fold(折り畳み)
+" 移動・選択
 "------------------------------------------
+
+" Normal mode
+nnoremap <Space>h  ^
+nnoremap <Space>l  $
+
+" Insert mode
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+
+" Commnadline mode
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-a> <C-b>
+cnoremap <C-e> <C-e>
+cnoremap <C-u> <C-e><C-u>
+
 
 " 見た目上の行単位で移動(折り返していたら別の行的な動き)
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-
-" 行頭・行末移動
-nnoremap <Space>h  ^
-nnoremap <Space>l  $
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
 
 " vv : Visualモードに移行して行末まで選択
 vnoremap v $h
@@ -169,6 +179,11 @@ set virtualedit=block
 " <TAB> : 対応ペアにジャンプ
 nnoremap <TAB> %
 vnoremap <TAB> %
+
+
+"------------------------------------------
+" tab, window, 折りたたみ
+"------------------------------------------
 
 " タブ
 "  tt   : 新規
@@ -185,19 +200,12 @@ for n in range(1, 9)
 endfor
 
 " ウィンドウ移動 (ctrl + hjkl)
-map <C-h>     <ESC><C-W>h<CR>
-map <C-l>     <ESC><C-W>l<CR>
-map <C-k>     <ESC><C-W>k<CR>
-map <C-j>     <ESC><C-W>j<CR>
+map <C-h> <ESC><C-W>h<CR>
+map <C-l> <ESC><C-W>l<CR>
+map <C-k> <ESC><C-W>k<CR>
+map <C-j> <ESC><C-W>j<CR>
 
-" コマンドラインモードでmacっぽくカーソル移動
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-a> <C-b>
-cnoremap <C-e> <C-e>
-cnoremap <C-u> <C-e><C-u>
-
-" fold
+" 折りたたみ
 "  h : とじる
 "  l : ひらく
 nnoremap <expr> h col('.') == 1 && foldlevel(line('.')) > 0 ? 'zc' : 'h'
@@ -232,6 +240,12 @@ map Y y$
 " インクリ&デクリメント
 nnoremap + <C-a>
 nnoremap - <C-x>
-" gs : らくらく置換
+
+" 空行を挿入
+"  10<Space>o : 10行挿入
+nnoremap <Space>o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+
+" gs : 置換
 nnoremap gs :<C-u>%s//g<Left><Left>
 vnoremap gs :s//g<Left><Left>
