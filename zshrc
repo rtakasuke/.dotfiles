@@ -10,6 +10,8 @@ setopt print_eight_bit  # 8bit 文字を有効化
 setopt ignoreeof        # ^d によるログアウト抑止
 setopt no_flow_control  # ^s, ^q によるのロック＆解除を抑止
 
+unsetopt promptcr       # 末尾に改行がない出力を表示
+
 bindkey -d
 bindkey -e
 bindkey "^U" backward-kill-line
