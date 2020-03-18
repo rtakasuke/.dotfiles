@@ -27,7 +27,7 @@ ln -vsf "$BASE_DIR"/nvim         "$CONFIG_DIR"/nvim
 echo -e "\n### Install dein.vim (for neovim)"
 DEIN_CACHE_DIR=~/.cache/dein
 DEIN_VIM_INSTALLER=$BASE_DIR/dein_vim_installer.sh
-if [ -f ${DEIN_CACHE_DIR}/repos/github.com/Shougo/dein.vim ]; then
+if [ ! -e ${DEIN_CACHE_DIR}/repos/github.com/Shougo/dein.vim ]; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > "$DEIN_VIM_INSTALLER"
     sh "$DEIN_VIM_INSTALLER" "$DEIN_CACHE_DIR"
     rm "$DEIN_VIM_INSTALLER"
