@@ -1,4 +1,7 @@
+#------------------------------------------------------------
 # General
+#------------------------------------------------------------
+
 export EDITOR=nvim
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
@@ -35,9 +38,16 @@ alias dk='docker'
 
 autoload -Uz colors; colors
 
+# 単語の一部として扱われる文字。 デフォルトから '/' だけ除外
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
+
+#------------------------------------------------------------
 # コマンド補完
+#------------------------------------------------------------
+
 autoload -U compinit; compinit -u
+
 setopt auto_cd            # ディレクトリ名のみで移動
 setopt auto_list          # 補完候補を一覧表示
 setopt auto_menu          # tab連打
@@ -50,14 +60,18 @@ setopt list_types         # ls -F
 setopt list_packed        # リストをできるだけ詰める
 setopt magic_equal_subst  # '=' より先も補完
 setopt mark_dirs          # ファイル名展開でディレクトリ末尾に '/' を付与
-setopt print_exit_value   # 戻り値が 0 以外の場合終了コードを表示
+# setopt print_exit_value   # 戻り値が 0 以外の場合終了コードを表示
 setopt pushd_ignore_dups  # ディレクトリスタックに重複する物は古い方を削除
+
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区別せずに補完
 
 
+#------------------------------------------------------------
 # prompt
+#------------------------------------------------------------
+
 autoload -Uz vcs_info
 precmd() { vcs_info }
 setopt prompt_subst
@@ -83,7 +97,9 @@ local p_br=$'\n'
 PROMPT="$p_dir $p_git$p_br$p_mark "
 
 
-# history
+#------------------------------------------------------------
+# history, incremental search
+#------------------------------------------------------------
 HISTSIZE=100000
 SAVEHIST=100000
 autoload history-search-end  # 履歴検索時のカーソルを末尾に置く
@@ -92,9 +108,17 @@ setopt bang_hist             # '!'を使った履歴展開を行う
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分なスペースを削除
 setopt hist_save_no_dups     # 入力したコマンドが直前のものと同一なら古いコマンドのほうを削除する
+setopt hist_verify           # ヒストリを呼び出してから実行する間に一旦編集可能
+setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
+# ⌃r : peco で history 検索
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
-# 単語の一部として扱われる文字
-# デフォルトから '/' だけ除外
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
