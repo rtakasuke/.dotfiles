@@ -73,11 +73,6 @@ hook_add = '''
   set laststatus=2
 '''
 
-
-#--------------------------------------------------------
-# 表示
-#--------------------------------------------------------
-
 [[plugins]]
 # 変更差分を可視化
 repo = 'airblade/vim-gitgutter'
@@ -85,6 +80,11 @@ hook_add = '''
   nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
   nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 '''
+
+
+#--------------------------------------------------------
+# 表示
+#--------------------------------------------------------
 
 [[plugins]]
 # ログファイルの色付け
