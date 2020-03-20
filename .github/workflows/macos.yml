@@ -32,6 +32,10 @@ jobs:
 
     - name: Load .zshenv
       run: |
+        # コンテナ上で zplug を入れようとすると WARNING が出る
+        # https://github.com/zplug/zplug/issues/272
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+        zplug install
         zsh ~/.zshenv 2> error.log; cat error.log
         if [ -s error.log ]; then false; fi
 
