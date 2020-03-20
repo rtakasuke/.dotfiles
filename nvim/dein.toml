@@ -30,57 +30,6 @@ repo = 'thinca/vim-visualstar'
 
 
 #------------------------------------------------------------
-# オートコンプリート
-#------------------------------------------------------------
-
-[[plugins]]
-#  C-g  : 前回行われた補完をキャンセル
-#  C-l  : 補完候補のなかから共通する部分を補完。シェルの補完のような動き
-#  C-h  : ポップアップを閉じる
-#  <BS> : ポップアップを閉じる
-#  C-y  : 選択している候補を確定する
-#  C-e  : 選択している候補をキャンセルして閉じる
-repo = 'Shougo/neocomplcache'
-hook_add = '''
-  let g:acp_enableAtStartup=0                      " (インストールされているのなら)AutoComplPopを無効化
-  let g:neocomplcache_enable_at_startup=1          " vim起動時に有効化
-  let g:neocomplcache_enable_smart_case=1          " 大文字、小文字を区別しない
-  let g:neocomplcache_enable_underbar_completion=1 " アンダースコア区切りの補完
-  inoremap <expr><C-g> neocomplcache#undo_completion()
-  inoremap <expr><C-l> neocomplcache#complete_common_string()
-  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y> neocomplcache#close_popup()
-  inoremap <expr><C-e> neocomplcache#cancel_popup()
-  autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-  autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd vimrc FileType php           setlocal omnifunc=phpcomplete#CompletePHP
-  autocmd vimrc FileType perl          setlocal omnifunc=perlcomplete#CompletePERL
-  autocmd vimrc FileType python        setlocal omnifunc=pythoncomplete#Complete
-  autocmd vimrc FileType c             setlocal omnifunc=ccomplete#Complete
-'''
-
-
-#------------------------------------------------------------
-# 静的解析
-#------------------------------------------------------------
-[[plugins]]
-repo = 'scrooloose/syntastic'
-hook_add = '''
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_python_checkers = ["flake8"]
-'''
-
-
-#------------------------------------------------------------
 # ファイル操作・ファイル検索
 #------------------------------------------------------------
 
@@ -115,6 +64,7 @@ repo = 'mileszs/ack.vim'
 #------------------------------------------------------------
 # Git
 #------------------------------------------------------------
+
 [[plugins]]
 # https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
 repo = 'tpope/vim-fugitive'
@@ -123,10 +73,6 @@ hook_add = '''
   set laststatus=2
 '''
 
-
-#--------------------------------------------------------
-# 表示
-#--------------------------------------------------------
 [[plugins]]
 # 変更差分を可視化
 repo = 'airblade/vim-gitgutter'
@@ -134,6 +80,11 @@ hook_add = '''
   nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
   nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 '''
+
+
+#--------------------------------------------------------
+# 表示
+#--------------------------------------------------------
 
 [[plugins]]
 # ログファイルの色付け
