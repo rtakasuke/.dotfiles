@@ -149,7 +149,7 @@ fi
 #------------------------------------------------------------
 
 # 未インストール項目をインストールする
-if ! zplug check --verbose; then
+if ! zplug check; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
@@ -157,5 +157,5 @@ if ! zplug check --verbose; then
 fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load --verbose
+zplug load
 
