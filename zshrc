@@ -13,14 +13,24 @@ setopt print_eight_bit  # 8bit 文字を有効化
 setopt ignoreeof        # ^d によるログアウト抑止
 setopt no_flow_control  # ^s, ^q によるのロック＆解除を抑止
 unsetopt promptcr       # 末尾に改行がない出力を表示
-autoload -Uz colors; colors
 
 # 単語の一部として扱われる文字。 デフォルトから `/` だけ除外
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 
 #------------------------------------------------------------
-# bindkey & alias
+# zplug (Prep)
+#------------------------------------------------------------
+
+export ZPLUG_HOME=~/.zplug
+if [[ ! -d ~/.zplug ]];then
+  git clone https://github.com/zplug/zplug $ZPLUG_HOME
+fi
+source $ZPLUG_HOME/init.zsh
+
+
+#------------------------------------------------------------
+# Keybindings & Alias
 #------------------------------------------------------------
 
 bindkey -d
@@ -42,6 +52,41 @@ alias vimdiff='nvim -d'
 alias diff='colordiff'
 alias hist='history'
 alias dk='docker'
+
+
+#------------------------------------------------------------
+# Appearance
+#------------------------------------------------------------
+
+# shell でシンタックスハイライト
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+autoload -Uz colors; colors
+
+# Prompt
+autoload -Uz vcs_info
+precmd() { vcs_info }
+setopt prompt_subst
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr     "%F{yellow} +%f"  # %c
+zstyle ':vcs_info:git:*' unstagedstr   "%F{green} *%f"   # %u
+zstyle ':vcs_info:git:*' formats       "%F{green}(%b%u%c%F{green})%f"
+zstyle ':vcs_info:git:*' actionformats "%F{green}(%b%u%c%F{green}|%f%F{red}%a%f%F{green})%f"
+case ${OSTYPE} in
+  darwin*)
+    # Mac OS
+    local p_dir="%F{blue}[%~]%f"
+    ;;
+  *)
+    # Other OS
+    local p_dir="%F{blue}[%m:%~]%f"
+    ;;
+esac
+local p_git='${vcs_info_msg_0_}'
+local p_mark="%B%(?,%F{green},%F{red})>%f%b"
+local p_br=$'\n'
+PROMPT="$p_dir $p_git$p_br$p_mark "
 
 
 #------------------------------------------------------------
@@ -70,7 +115,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区�
 
 
 #------------------------------------------------------------
-# History & Incremental Search
+# History Search
 #------------------------------------------------------------
 
 HISTSIZE=100000
@@ -100,32 +145,17 @@ fi
 
 
 #------------------------------------------------------------
-# Prompt
+# zplug (Post)
 #------------------------------------------------------------
 
-autoload -Uz vcs_info
-precmd() { vcs_info }
-setopt prompt_subst
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr     "%F{yellow} +%f"  # %c
-zstyle ':vcs_info:git:*' unstagedstr   "%F{green} *%f"   # %u
-zstyle ':vcs_info:git:*' formats       "%F{green}(%b%u%c%F{green})%f"
-zstyle ':vcs_info:git:*' actionformats "%F{green}(%b%u%c%F{green}|%f%F{red}%a%f%F{green})%f"
+# 未インストール項目をインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-case ${OSTYPE} in
-  darwin*)
-    # Mac OS
-    local p_dir="%F{blue}[%~]%f"
-    ;;
-  *)
-    # Other OS
-    local p_dir="%F{blue}[%m:%~]%f"
-    ;;
-esac
+# コマンドをリンクして、PATH に追加し、プラグインは読み込む
+zplug load --verbose
 
-local p_git='${vcs_info_msg_0_}'
-local p_mark="%B%(?,%F{green},%F{red})>%f%b"
-local p_br=$'\n'
-
-PROMPT="$p_dir $p_git$p_br$p_mark "

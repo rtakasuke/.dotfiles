@@ -1,14 +1,18 @@
 {
-    "Prompt": "peco >",
-    "Keymap": {
-        "C-j": "peco.Cancel"
-    },
-    "Style": {
-        "Basic": ["on_default", "default"],
-        "SavedSelection": ["bold", "on_yellow", "white"],
-        "Selected": ["underline", "on_cyan", "black"],
-        "Query": ["yellow", "bold"],
-        "Matched": ["red", "on_blue"]
-    }
+  "Prompt": "peco > ",
+  "Keymap": {
+    "@": "peco.ToggleSingleKeyJump",
+    "C-j": "peco.Cancel"
+  },
+  "SingleKeyJump": {
+    "ShowPrefix": true
+  },
+  "Style": {
+    "Basic": ["on_default", "cyan"],
+    "SavedSelection": ["bold", "on_yellow", "white"],
+    "Selected": ["underline", "on_green", "white"],
+    "Query": ["yellow", "bold"],
+    "Matched": ["red", "bold"]
+  }
 }
 

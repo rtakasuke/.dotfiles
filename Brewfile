@@ -22,6 +22,7 @@ brew "telnet"
 brew "tig"
 brew "tree"
 brew "wget"
+brew "zplug"
 brew "zsh-completions"
 
 #cask "alfred"
