@@ -42,6 +42,6 @@ jobs:
         export ZPLUG_HOME=~/.zplug
         git clone https://github.com/zplug/zplug $ZPLUG_HOME
         zsh $ZPLUG_HOME/init.zsh
-        $ZPLUG_HOME/autoload/zplug install
+        sudo $ZPLUG_HOME/autoload/zplug install
         zsh ~/.zshrc 2> error.log; cat error.log
         if [ -s error.log ]; then false; fi
