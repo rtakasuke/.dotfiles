@@ -42,6 +42,7 @@ jobs:
         export ZPLUG_HOME=~/.zplug
         git clone https://github.com/zplug/zplug $ZPLUG_HOME
         zsh $ZPLUG_HOME/init.zsh
-        # sudo $ZPLUG_HOME/autoload/zplug install
-        zsh ~/.zshrc 2> error.log; cat error.log
+        export SHELL=/bin/zsh
+        export TERM="xterm-256color"
+        ~/.zshrc 2> error.log; cat error.log
         if [ -s error.log ]; then false; fi
