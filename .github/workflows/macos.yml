@@ -39,6 +39,7 @@ jobs:
       run: |
         # TODO: コンテナ上で zplug を入れようとすると WARNING が出るので先にインストール
         # https://github.com/zplug/zplug/issues/272
+        zsh
         export ZPLUG_HOME=~/.zplug
         git clone https://github.com/zplug/zplug $ZPLUG_HOME
         source $ZPLUG_HOME/init.zsh

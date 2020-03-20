@@ -221,17 +221,21 @@ nnoremap <expr> l foldclosed(line('.')) != -1 ? 'zogv0' : 'l'
 
 
 "------------------------------------------
-" 編集
+" インデント
 "------------------------------------------
 
-" インデント
 set autoindent
 set smartindent
 set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
-"  for perl
-inoremap # #
+
+" TODO: ファイルタイプ別に設定したい
+
+
+"------------------------------------------
+" 編集
+"------------------------------------------
 
 " C-j : Insertモードを抜ける
 inoremap <C-j> <Esc>
