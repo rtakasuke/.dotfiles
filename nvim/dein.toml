@@ -61,27 +61,6 @@ hook_add = '''
 repo = 'mileszs/ack.vim'
 
 
-#------------------------------------------------------------
-# Git
-#------------------------------------------------------------
-
-[[plugins]]
-# https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-  set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
-  set laststatus=2
-'''
-
-[[plugins]]
-# 変更差分を可視化
-repo = 'airblade/vim-gitgutter'
-hook_add = '''
-  nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-  nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
-'''
-
-
 #--------------------------------------------------------
 # 表示
 #--------------------------------------------------------

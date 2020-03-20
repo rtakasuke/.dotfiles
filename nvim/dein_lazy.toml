@@ -1,4 +1,29 @@
 #------------------------------------------------------------
+# Git
+#------------------------------------------------------------
+
+[[plugins]]
+# https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
+repo = 'tpope/vim-fugitive'
+hook_source = '''
+  set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
+  set laststatus=2
+'''
+
+[[plugins]]
+# 変更差分を可視化
+repo = 'airblade/vim-gitgutter'
+hook_source = '''
+  nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+  nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+  set updatetime=1000
+  highlight GitGutterAdd ctermfg=black ctermbg=green
+  highlight GitGutterDelete ctermfg=black ctermbg=red
+  highlight GitGutterChange ctermfg=black ctermbg=yellow
+'''
+
+
+#------------------------------------------------------------
 # オートコンプリート
 #------------------------------------------------------------
 
@@ -11,7 +36,7 @@
 #  C-e  : 選択している候補をキャンセルして閉じる
 repo = 'Shougo/neocomplcache'
 on_i = 1  # insert mode に入ったら読み込む
-hook_add = '''
+hook_source = '''
   let g:acp_enableAtStartup=0
   let g:neocomplcache_enable_at_startup=1
   let g:neocomplcache_enable_smart_case=1
@@ -38,7 +63,7 @@ hook_add = '''
 #------------------------------------------------------------
 [[plugins]]
 repo = 'scrooloose/syntastic'
-hook_add = '''
+hook_source = '''
   set statusline+=%#warningmsg#
   set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*

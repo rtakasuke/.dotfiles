@@ -3,9 +3,11 @@ augroup vimrc
   autocmd!
 augroup END
 
+
 "------------------------------------------
 " プラグイン管理
 "------------------------------------------
+
 let s:dein_cache_dir = '~/.cache/dein/'
 let s:dein_conf_dir = '~/.config/nvim/'
 
@@ -30,6 +32,7 @@ endif
 "------------------------------------------
 " ファイル操作・エンコード
 "------------------------------------------
+
 set encoding=utf-8
 scriptencoding utf-8
 filetype on
@@ -76,6 +79,7 @@ augroup END  " \}\}\}
 "------------------------------------------
 " 表示
 "------------------------------------------
+
 syntax on
 colorscheme desert
 set t_Co=256
@@ -87,11 +91,11 @@ set sidescrolloff=4  " 左右端に視界を確保
 set ambiwidth=double " 一部の全角記号の表示ズレ対策
 set synmaxcol=200    " １行の文字数が多い時はSyntaxHighlightを無効
 
-" .zshrc のカーソル移動が極端に遅いので抑止
+" .zshrc のカーソル移動が極端に遅いのでシンタックスハイライトを抑止
 autocmd vimrc filetype zsh syntax clear zshOption
 
-" 自己主張の強い色を調整
-hi SignColumn ctermbg=236
+" 行番号周辺の色がケバいので調整
+hi SignColumn ctermbg=237
 hi LineNr ctermfg=59
 
 " カーソル行(列)をハイライト
@@ -129,6 +133,7 @@ hi PmenuThumb ctermbg=lightgray
 "------------------------------------------
 " 検索
 "------------------------------------------
+
 set wildmenu    " コマンドライン補完を拡張
 set incsearch   " インクリメンタルサーチ
 set ignorecase  " 大文字小文字を区別しない

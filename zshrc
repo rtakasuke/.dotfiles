@@ -32,8 +32,7 @@ alias cdh='cd ~'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias d='dirs -v'
-alias gd='dirs -v; echo -n "number: "; read newdir; pushd > /dev/null +"$newdir"'
+alias d='dirs -v; echo -n "number: "; read newdir; pushd > /dev/null +"$newdir"'
 alias l='ls -lG'
 alias ls='ls -CFGx'
 alias ll='ls -lhaG'
@@ -73,6 +72,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区�
 #------------------------------------------------------------
 # History & Incremental Search
 #------------------------------------------------------------
+
 HISTSIZE=100000
 SAVEHIST=100000
 autoload history-search-end  # 履歴検索時のカーソルを末尾に置く
@@ -85,14 +85,18 @@ setopt hist_verify           # ヒストリを呼び出してから実行する�
 setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
-# ⌃r : peco でインクリメンタルサーチ
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+# peco
+if (( ${+commands[peco]} )); then
+
+    function peco-history-selection() {
+        BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+        CURSOR=$#BUFFER
+        zle reset-prompt
+    }
+
+    zle -N peco-history-selection
+    bindkey '^R' peco-history-selection
+fi
 
 
 #------------------------------------------------------------
@@ -108,18 +112,20 @@ zstyle ':vcs_info:git:*' stagedstr     "%F{yellow} +%f"  # %c
 zstyle ':vcs_info:git:*' unstagedstr   "%F{green} *%f"   # %u
 zstyle ':vcs_info:git:*' formats       "%F{green}(%b%u%c%F{green})%f"
 zstyle ':vcs_info:git:*' actionformats "%F{green}(%b%u%c%F{green}|%f%F{red}%a%f%F{green})%f"
+
 case ${OSTYPE} in
   darwin*)
     # Mac OS
-    local p_dir="%F{blue}[%~]%f "
+    local p_dir="%F{blue}[%~]%f"
     ;;
   *)
     # Other OS
-    local p_dir="%F{blue}[%m:%~]%f "
+    local p_dir="%F{blue}[%m:%~]%f"
     ;;
 esac
+
 local p_git='${vcs_info_msg_0_}'
 local p_mark="%B%(?,%F{green},%F{red})>%f%b"
 local p_br=$'\n'
-PROMPT="$p_dir $p_git$p_br$p_mark "
 
+PROMPT="$p_dir $p_git$p_br$p_mark "
