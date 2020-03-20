@@ -226,7 +226,7 @@ set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
 "  for perl
-inoremap # X#
+inoremap # #
 
 " C-j : Insertモードを抜ける
 inoremap <C-j> <Esc>
