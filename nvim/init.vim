@@ -21,6 +21,7 @@ if dein#load_state(s:dein_cache_dir)
   call dein#load_toml(s:dein_conf_dir . 'dein_lazy.toml', {'lazy': 1})
   call dein#end()
   call dein#save_state()
+  autocmd VimEnter * call dein#call_hook('post_source')
 endif
 
 " 自動インストール
