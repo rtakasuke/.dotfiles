@@ -157,18 +157,6 @@ nnoremap # #N
 nnoremap <Space>h  ^
 nnoremap <Space>l  $
 
-" Insert mode
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
-
-" Commnadline mode
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-a> <C-b>
-cnoremap <C-e> <C-e>
-cnoremap <C-u> <C-e><C-u>
-
-
 " 見た目上の行単位で移動(折り返していたら別の行的な動き)
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -230,8 +218,6 @@ set smartindent
 set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
-"  for perl
-inoremap # #
 
 " C-j : Insertモードを抜ける
 inoremap <C-j> <Esc>
