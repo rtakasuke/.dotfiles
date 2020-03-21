@@ -21,7 +21,6 @@ if dein#load_state(s:dein_cache_dir)
   call dein#load_toml(s:dein_conf_dir . 'dein_lazy.toml', {'lazy': 1})
   call dein#end()
   call dein#save_state()
-  autocmd VimEnter * call dein#call_hook('post_source')
 endif
 
 " 自動インストール
@@ -93,7 +92,9 @@ set ambiwidth=double " 一部の全角記号の表示ズレ対策
 set synmaxcol=200    " １行の文字数が多い時はSyntaxHighlightを無効
 
 " .zshrc のカーソル移動が極端に遅いのでシンタックスハイライトを抑止
-autocmd vimrc filetype zsh syntax clear zshOption
+augroup vimrc
+  autocmd filetype zsh syntax clear zshOption
+augroup END
 
 " 行番号周辺の色がケバいので調整
 hi SignColumn ctermbg=237
