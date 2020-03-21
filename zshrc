@@ -23,15 +23,22 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 #------------------------------------------------------------
 
 export ZPLUG_HOME=~/.zplug
+
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug $ZPLUG_HOME
 fi
+
 source $ZPLUG_HOME/init.zsh
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 
 #------------------------------------------------------------
 # Keybindings & Alias
 #------------------------------------------------------------
+
+# git リポジトリのルートに cd できる
+zplug "mollifier/cd-gitroot"
+alias cg='cd-gitroot'
 
 bindkey -d
 bindkey -e
@@ -60,6 +67,9 @@ alias dk='docker'
 
 # shell でシンタックスハイライト
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# 色強化
+zplug "chrissicool/zsh-256color"
 
 autoload -Uz colors; colors
 
@@ -92,6 +102,12 @@ PROMPT="$p_dir $p_git$p_br$p_mark "
 #------------------------------------------------------------
 # Completion
 #------------------------------------------------------------
+
+zplug "zsh-users/zsh-completions"
+
+# 履歴に基づいたコマンドのサジェスト
+# zplug "zsh-users/zsh-autosuggestions", defer:2
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
 
 autoload -U compinit; compinit -u
 
@@ -149,7 +165,7 @@ fi
 #------------------------------------------------------------
 
 # 未インストール項目をインストールする
-if ! zplug check; then
+if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install

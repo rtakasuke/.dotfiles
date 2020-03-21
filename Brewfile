@@ -21,7 +21,6 @@ brew "telnet"
 brew "tig"
 brew "tree"
 brew "wget"
-brew "zsh-completions"
 
 #cask "alfred"
 #cask "appcleaner"

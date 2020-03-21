@@ -157,6 +157,9 @@ nnoremap # #N
 nnoremap <Space>h  ^
 nnoremap <Space>l  $
 
+" Commnadline mode
+" cnoremap <C-k> <C-e><C-u>
+
 " 見た目上の行単位で移動(折り返していたら別の行的な動き)
 nnoremap <silent> j gj
 nnoremap <silent> k gk
