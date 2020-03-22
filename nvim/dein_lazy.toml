@@ -1,15 +1,6 @@
 #------------------------------------------------------------
-# Git
+# 表示
 #------------------------------------------------------------
-
-[[plugins]]
-# https://github.com/tpope/vim-fugitive/blob/master/doc/fugitive.txt
-repo = 'tpope/vim-fugitive'
-on_event = ['VimEnter']
-hook_post_source = '''
-  set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%llp%%
-  set laststatus=2
-'''
 
 [[plugins]]
 # 変更差分を可視化
