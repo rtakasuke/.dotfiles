@@ -9,7 +9,6 @@ export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30
 
 setopt notify           # background プロセスの状態変化を即時通知
 setopt no_beep          # ビープ音停止
-setopt print_eight_bit  # 8bit 文字を有効化
 setopt ignoreeof        # ^d によるログアウト抑止
 setopt no_flow_control  # ^s, ^q によるのロック＆解除を抑止
 unsetopt promptcr       # 末尾に改行がない出力を表示
@@ -105,10 +104,6 @@ PROMPT="$p_dir $p_git$p_br$p_mark "
 
 zplug "zsh-users/zsh-completions"
 
-# 履歴に基づいたコマンドのサジェスト
-# zplug "zsh-users/zsh-autosuggestions", defer:2
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#888888"
-
 autoload -U compinit; compinit -u
 
 setopt auto_cd            # ディレクトリ名のみで移動
@@ -146,18 +141,18 @@ setopt hist_verify           # ヒストリを呼び出してから実行する�
 setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
-# peco
-if (( ${+commands[peco]} )); then
-
-    function peco-history-selection() {
-        BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-        CURSOR=$#BUFFER
-        zle reset-prompt
-    }
-
-    zle -N peco-history-selection
-    bindkey '^R' peco-history-selection
-fi
+# # peco
+# if (( ${+commands[peco]} )); then
+#
+#     function peco-history-selection() {
+#         BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+#         CURSOR=$#BUFFER
+#         zle reset-prompt
+#     }
+#
+#     zle -N peco-history-selection
+#     bindkey '^R' peco-history-selection
+# fi
 
 
 #------------------------------------------------------------

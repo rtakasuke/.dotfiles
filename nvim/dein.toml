@@ -34,20 +34,6 @@ repo = 'thinca/vim-visualstar'
 #------------------------------------------------------------
 
 [[plugins]]
-# vim起動時に最近開いたファイルを表示
-repo = 'mhinz/vim-startify'
-hook_add = '''
-  let g:startify_custom_header =
-    \ map(['Vim '.v:version]+split(system('date'), '\n'), '"   ". v:val')+ ['','']
-  let g:startify_custom_indices = [
-    \ 'a', 'c', 'd', 'f', 'g', 'h', 'l', 'm', 'n', 'o', 'p', 'r', 'u', 'w', 'x',
-    \ 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    \  ]
-  let g:startify_bookmarks = ['~/.vimrc', '~/.bashrc', '~/.gitconfig', ',~/.tmux.conf',]
-'''
-
-[[plugins]]
 # C-t : ディレクトリをツリー表示
 repo = 'scrooloose/nerdtree'
 hook_add = '''
@@ -70,10 +56,6 @@ repo = 'mileszs/ack.vim'
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-# ログファイルの色付け
-repo = 'vim-scripts/AnsiEsc.vim'
-
-[[plugins]]
 # status line
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -93,11 +75,24 @@ hook_add = '''
 #------------------------------------------------------------
 
 [[plugins]]
-# (normal/visual) gcc : コメントアウト
-repo = 'tomtom/tcomment_vim'
+# コメントアウト
+repo = 'tyru/caw.vim.git'
 
 [[plugins]]
 # 囲み文字の入力補助
 #  囲み文字の削除 ds (delete surround)
 #  囲み文字の変更 cs (change surrount)
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+# toml の中の vim script を検知できる
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+# toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'

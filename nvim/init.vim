@@ -60,8 +60,11 @@ if has('persistent_undo')
     set undofile
 endif
 
-" ファイル閉じても同じ位置から編集再開
-autocmd vimrc BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+" " ファイル閉じても同じ位置から編集再開
+" augroup vimrc-save-position
+"   autocmd!
+"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+" augroup END
 
 " 存在しないディレクトリにファイルを保存しようとした時にmkdir
 augroup vimrc-auto-mkdir  " \{\{\{
@@ -93,6 +96,7 @@ set synmaxcol=200    " １行の文字数が多い時はSyntaxHighlightを無効
 
 " .zshrc のカーソル移動が極端に遅いのでシンタックスハイライトを抑止
 augroup vimrc
+  autocmd!
   autocmd filetype zsh syntax clear zshOption
 augroup END
 
@@ -229,7 +233,10 @@ inoremap <C-j> <Esc>
 
 " gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
 nnoremap gp :<C-u>set paste<Return>i
-autocmd vimrc InsertLeave * set nopaste
+augroup vimrc-nopaste
+  autocmd!
+  autocmd vimrc InsertLeave * set nopaste
+augroup END
 
 " Y : 行末までヤンク
 map Y y$
