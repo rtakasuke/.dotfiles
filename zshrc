@@ -129,11 +129,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区�
 # History Search
 #------------------------------------------------------------
 
-HISTSIZE=100000
+HISTSIZE=10000
 SAVEHIST=100000
 autoload history-search-end  # 履歴検索時のカーソルを末尾に置く
 setopt hist_expand           # 補完時に履歴を自動的に展開
 setopt bang_hist             # '!'を使った履歴展開を行う
+setopt hist_ignore_dups      # 重複した履歴を保持しない
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分なスペースを削除
 setopt hist_save_no_dups     # 入力したコマンドが直前のものと同一なら古いコマンドのほうを削除する
@@ -141,18 +142,18 @@ setopt hist_verify           # ヒストリを呼び出してから実行する�
 setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
-# # peco
-# if (( ${+commands[peco]} )); then
-#
-#     function peco-history-selection() {
-#         BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-#         CURSOR=$#BUFFER
-#         zle reset-prompt
-#     }
-#
-#     zle -N peco-history-selection
-#     bindkey '^R' peco-history-selection
-# fi
+# fzf
+function fzf-select-history() {
+    BUFFER=$( \
+        history -n -r 1 | fzf --no-info --no-sort --no-multi --query "$LBUFFER" \
+        --height=40% --layout=reverse --prompt="fzf > " \
+        --bind=ctrl-j:abort,ctrl-k:kill-line \
+    )
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
 
 
 #------------------------------------------------------------

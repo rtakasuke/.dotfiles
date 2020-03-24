@@ -1,11 +1,7 @@
 {
   "Prompt": "peco > ",
   "Keymap": {
-    "@": "peco.ToggleSingleKeyJump",
     "C-j": "peco.Cancel"
-  },
-  "SingleKeyJump": {
-    "ShowPrefix": true
   },
   "Style": {
     "Basic": ["on_default", "cyan"],
