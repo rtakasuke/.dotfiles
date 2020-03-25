@@ -26,11 +26,13 @@ bindkey '^r' fzf-select-history
 zplug "rupa/z", use:z.sh
 fzf-z-search() {
     local res=$(z | sort -rn | cut -c 12- | fzf)
+    zle reset-prompt
     if [ -n "$res" ]; then
         BUFFER+="cd $res"
         zle accept-line
+    else
+        return 1
     fi
-    zle reset-prompt
 }
 zle -N fzf-z-search
 bindkey '^f' fzf-z-search
