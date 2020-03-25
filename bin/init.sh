@@ -23,7 +23,6 @@ ln -vsf "$BASE_DIR"/tigrc        ~/.tigrc
 ln -vsf "$BASE_DIR"/zshenv       ~/.zshenv
 ln -vsf "$BASE_DIR"/zshrc        ~/.zshrc
 ln -vsf "$BASE_DIR"/nvim         "$CONFIG_DIR"/nvim
-ln -vsf "$BASE_DIR"/peco         "$CONFIG_DIR"/peco
 
 echo -e "\n### Install dein.vim (for neovim)"
 DEIN_CACHE_DIR=~/.cache/dein
