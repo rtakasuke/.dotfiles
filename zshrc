@@ -2,6 +2,7 @@
 # General
 #------------------------------------------------------------
 
+export ZSH_HOME=~/.dotfiles/zsh
 export EDITOR=nvim
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
@@ -43,16 +44,17 @@ bindkey -d
 bindkey -e
 bindkey "^U" backward-kill-line
 
+if type "exa" > /dev/null 2>&1; then
+    alias ls='exa'
+    alias ll='exa -l --git'
+    alias la='exa -la --git'
+fi
 alias cd='pushd > /dev/null'
 alias cdh='cd ~'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias d='dirs -v; echo -n "number: "; read newdir; pushd > /dev/null +"$newdir"'
-alias l='ls -lG'
-alias ls='ls -CFGx'
-alias ll='ls -lhaG'
-alias la='ls -alG'
 alias vim='nvim'
 alias vimdiff='nvim -d'
 alias diff='colordiff'
@@ -73,29 +75,7 @@ zplug "chrissicool/zsh-256color"
 autoload -Uz colors; colors
 
 # Prompt
-autoload -Uz vcs_info
-precmd() { vcs_info }
-setopt prompt_subst
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr     "%F{yellow} +%f"  # %c
-zstyle ':vcs_info:git:*' unstagedstr   "%F{green} *%f"   # %u
-zstyle ':vcs_info:git:*' formats       "%F{green}(%b%u%c%F{green})%f"
-zstyle ':vcs_info:git:*' actionformats "%F{green}(%b%u%c%F{green}|%f%F{red}%a%f%F{green})%f"
-case ${OSTYPE} in
-  darwin*)
-    # Mac OS
-    local p_dir="%F{blue}[%~]%f"
-    ;;
-  *)
-    # Other OS
-    local p_dir="%F{blue}[%m:%~]%f"
-    ;;
-esac
-local p_git='${vcs_info_msg_0_}'
-local p_mark="%B%(?,%F{green},%F{red})>%f%b"
-local p_br=$'\n'
-PROMPT="$p_dir $p_git$p_br$p_mark "
+source ${ZSH_HOME}/prompt.zsh
 
 
 #------------------------------------------------------------
@@ -137,23 +117,14 @@ setopt bang_hist             # '!'を使った履歴展開を行う
 setopt hist_ignore_dups      # 重複した履歴を保持しない
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分なスペースを削除
-setopt hist_save_no_dups     # 入力したコマンドが直前のものと同一なら古いコマンドのほうを削除する
 setopt hist_verify           # ヒストリを呼び出してから実行する間に一旦編集可能
 setopt inc_append_history    # 履歴をインクリメンタルに追加
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
 # fzf
-function fzf-select-history() {
-    BUFFER=$( \
-        history -n -r 1 | fzf --no-info --no-sort --no-multi --query "$LBUFFER" \
-        --height=40% --layout=reverse --prompt="fzf > " \
-        --bind=ctrl-j:abort,ctrl-k:kill-line \
-    )
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N fzf-select-history
-bindkey '^r' fzf-select-history
+if type "fzf" > /dev/null 2>&1; then
+    source ${ZSH_HOME}/fzf.zsh
+fi
 
 
 #------------------------------------------------------------
