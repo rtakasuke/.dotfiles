@@ -49,6 +49,9 @@ if type "exa" > /dev/null 2>&1; then
     alias ll='exa -l --git'
     alias la='exa -la --git'
 fi
+if type "glances" > /dev/null 2>&1; then
+    alias top='glances'
+fi
 alias cd='pushd > /dev/null'
 alias cdh='cd ~'
 alias ...='cd ../..'
@@ -109,6 +112,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区�
 # History Search
 #------------------------------------------------------------
 
+export HISTFILE=${HOME}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
 autoload history-search-end  # 履歴検索時のカーソルを末尾に置く
@@ -118,7 +122,7 @@ setopt hist_ignore_dups      # 重複した履歴を保持しない
 setopt hist_no_store         # historyコマンドは履歴に登録しない
 setopt hist_reduce_blanks    # 余分なスペースを削除
 setopt hist_verify           # ヒストリを呼び出してから実行する間に一旦編集可能
-setopt inc_append_history    # 履歴をインクリメンタルに追加
+setopt inc_append_history    # シェルの終了を待たずに履歴をファイルに保存
 setopt share_history         # 他のシェルのヒストリをリアルタイムで共有する
 
 # fzf

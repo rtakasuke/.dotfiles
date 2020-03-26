@@ -22,7 +22,7 @@ bindkey '^r' fzf-select-history
 # Changing directory
 #------------------------------------------------------------
 
-# ^f - z-search
+# ^j - z-search
 zplug "rupa/z", use:z.sh
 fzf-z-search() {
     local res=$(z | sort -rn | cut -c 12- | fzf)
@@ -35,7 +35,7 @@ fzf-z-search() {
     fi
 }
 zle -N fzf-z-search
-bindkey '^f' fzf-z-search
+bindkey '^j' fzf-z-search
 
 # fd - cd to selected directory
 fd() {
