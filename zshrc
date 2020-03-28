@@ -36,22 +36,24 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # Keybindings & Alias
 #------------------------------------------------------------
 
-# git リポジトリのルートに cd できる
-zplug "mollifier/cd-gitroot"
-alias cg='cd-gitroot'
-
 bindkey -d
 bindkey -e
 bindkey "^U" backward-kill-line
+
+# git リポジトリのルートに cd できる
+zplug "mollifier/cd-gitroot"
+alias cg='cd-gitroot'
 
 if type "exa" > /dev/null 2>&1; then
     alias ls='exa'
     alias ll='exa -l --git'
     alias la='exa -la --git'
 fi
+
 if type "glances" > /dev/null 2>&1; then
     alias top='glances'
 fi
+
 alias cd='pushd > /dev/null'
 alias cdh='cd ~'
 alias ...='cd ../..'
@@ -143,6 +145,4 @@ if ! zplug check --verbose; then
     fi
 fi
 
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
 zplug load
-

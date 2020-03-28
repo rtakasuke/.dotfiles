@@ -1,7 +1,8 @@
 # https://github.com/junegunn/fzf/wiki
 
-
-export FZF_DEFAULT_OPTS='--no-info --height=40% --layout=reverse --prompt="fzf > " --bind=ctrl-j:abort,ctrl-k:kill-line'
+export FZF_KEY_BINDS='--bind=ctrl-j:abort,ctrl-k:kill-line'
+export FZF_APPEARANCE='--no-info --height=40% --layout=reverse --prompt="fzf > "'
+export FZF_DEFAULT_OPTS="${FZF_APPEARANCE} ${FZF_KEY_BINDS}"
 
 
 #------------------------------------------------------------
