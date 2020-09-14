@@ -51,16 +51,8 @@ fd() {
 # Git
 #------------------------------------------------------------
 
-# fbr - checkout git branch
+# fbr - checkout git branch (including remote branches)
 fbr() {
-  local branches branch
-  branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
-}
-
-# fbra - checkout git branch (including remote branches)
-fbra() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |

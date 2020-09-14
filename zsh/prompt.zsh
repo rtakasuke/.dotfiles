@@ -28,5 +28,5 @@ local p_pyenv='%F{green}py:$(pyenv version-name)%f'
 # General
 local p_br=$'\n'
 local p_mark="%B%(?,%F{green},%F{red})>%f%b"
-local p_info="%F{green}(%f$p_git $p_pyenv%F{green})%f"
+local p_info="%F{green}(%f$p_git$p_pyenv%F{green})%f"
 PROMPT="$p_dir $p_info $p_br$p_mark "
