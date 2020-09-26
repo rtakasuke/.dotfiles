@@ -107,7 +107,9 @@ setopt pushd_ignore_dups  # ディレクトリスタックに重複する物は�
 
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion:*:default'   menu select=1
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'  # 大文字小文字を区別せずに補完
+
+# 大文字＆小文字、ハイフン＆アンスコを区別せずに補完
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:[-_]=[-_]'
 
 
 #------------------------------------------------------------
