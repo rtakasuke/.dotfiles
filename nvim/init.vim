@@ -60,11 +60,11 @@ if has('persistent_undo')
     set undofile
 endif
 
-" " ファイル閉じても同じ位置から編集再開
-" augroup vimrc-save-position
-"   autocmd!
-"   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
-" augroup END
+" ファイル閉じても同じ位置から編集再開
+augroup vimrc-save-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+augroup END
 
 " 存在しないディレクトリにファイルを保存しようとした時にmkdir
 augroup vimrc-auto-mkdir  " \{\{\{
@@ -156,7 +156,7 @@ nnoremap # #N
 
 
 "------------------------------------------
-" 移動・選択
+" カーソル移動系
 "------------------------------------------
 
 " Normal mode
@@ -227,6 +227,11 @@ set smartindent
 set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
+if has("autocmd")
+  filetype plugin on
+  filetype indent on
+  autocmd FileType yaml setlocal sw=2 sts=2 ts=2 et
+endif
 
 " C-j : Insertモードを抜ける
 inoremap <C-j> <Esc>
