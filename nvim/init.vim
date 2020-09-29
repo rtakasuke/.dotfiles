@@ -227,11 +227,12 @@ set smartindent
 set expandtab
 set tabstop=4 shiftwidth=4 softtabstop=4
 set shiftround
-if has("autocmd")
+augroup vimrc-filetype
+  autocmd!
   filetype plugin on
   filetype indent on
   autocmd FileType yaml setlocal sw=2 sts=2 ts=2 et
-endif
+augroup END
 
 " C-j : Insertモードを抜ける
 inoremap <C-j> <Esc>

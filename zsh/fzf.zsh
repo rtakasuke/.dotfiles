@@ -11,7 +11,8 @@ export FZF_DEFAULT_OPTS="${FZF_APPEARANCE} ${FZF_KEY_BINDS}"
 
 # ^r - search history
 function fzf-select-history() {
-    BUFFER=$(history -n -r 1 | fzf --no-sort --no-multi --query "$LBUFFER")
+    local tac=${commands[tac]:-"tail -r"}
+    BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sed 's/ *[0-9]* *//' | eval $tac | awk '!a[$0]++' | fzf +s)
     CURSOR=$#BUFFER
     zle reset-prompt
 }
