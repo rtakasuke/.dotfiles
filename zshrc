@@ -33,6 +33,14 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 
 #------------------------------------------------------------
+# rtakasuke Plugins
+#------------------------------------------------------------
+
+zplug "rtakasuke/zsh-duration"
+zplug "rtakasuke/zsh-smart-man"
+
+
+#------------------------------------------------------------
 # Keybindings & Alias
 #------------------------------------------------------------
 
@@ -88,6 +96,7 @@ source ${ZSH_HOME}/prompt.zsh
 #------------------------------------------------------------
 
 zplug "zsh-users/zsh-completions"
+zplug "greymd/docker-zsh-completion"
 
 autoload -U compinit; compinit -u
 
