@@ -36,8 +36,8 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # rtakasuke Plugins
 #------------------------------------------------------------
 
-zplug "rtakasuke/zsh-duration"
-zplug "rtakasuke/zsh-smart-man"
+zplug "rtakasuke/zsh-duration", lazy:true
+zplug "rtakasuke/zsh-smart-man", lazy:true
 
 
 #------------------------------------------------------------
@@ -49,7 +49,7 @@ bindkey -e
 bindkey "^U" backward-kill-line
 
 # git リポジトリのルートに cd できる
-zplug "mollifier/cd-gitroot"
+zplug "mollifier/cd-gitroot", lazy:true
 alias cg='cd-gitroot'
 
 if type "exa" > /dev/null 2>&1; then
@@ -80,10 +80,10 @@ alias dk='docker'
 #------------------------------------------------------------
 
 # shell でシンタックスハイライト
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2, lazy:true
 
 # 色強化
-zplug "chrissicool/zsh-256color"
+zplug "chrissicool/zsh-256color", lazy:true
 
 autoload -Uz colors; colors
 
@@ -95,8 +95,8 @@ source ${ZSH_HOME}/prompt.zsh
 # Completion
 #------------------------------------------------------------
 
-zplug "zsh-users/zsh-completions"
-zplug "greymd/docker-zsh-completion"
+zplug "zsh-users/zsh-completions", lazy:true
+zplug "greymd/docker-zsh-completion", lazy:true
 
 autoload -U compinit; compinit -u
 
