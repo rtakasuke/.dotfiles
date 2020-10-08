@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-check:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -24,14 +24,26 @@ jobs:
 
     - name: Install required packages
       run: |
+        brew install shellcheck
         pip install --upgrade pip
         pip install vim-vint
 
     # Lint check
-    - name: Run ShellCheck
-      uses: ludeeus/action-shellcheck@master
-      env:
-        SHELLCHECK_OPTS: 
+    - name: Check bin/init.sh
+      run: shellcheck ${GITHUB_WORKSPACE}/bin/init.sh
+
+    - name: Check .bash_profile
+      run: shellcheck ${GITHUB_WORKSPACE}/bash_profile --exclude=SC2148,SC1090
+
+    - name: Check .bashrc
+      run: shellcheck ${GITHUB_WORKSPACE}/bashrc --exclude=SC2148,SC1090
+
+    - name: Check .zshenv
+      run: shellcheck ${GITHUB_WORKSPACE}/zshenv --exclude=SC2148,SC1090
+
+    # TODO: チェックが厳しすぎる
+    # - name: Check .zshrc
+    #   run: shellcheck ${GITHUB_WORKSPACE}/zshrc --exclude=SC2148,SC1090
 
     - name: Check nvim/init.vim
       run: vint ${GITHUB_WORKSPACE}/nvim/*.vim -cstV --enable-neovim
