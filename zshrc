@@ -1,3 +1,5 @@
+
+
 #------------------------------------------------------------
 # General
 #------------------------------------------------------------
@@ -98,7 +100,7 @@ source ${ZSH_HOME}/prompt.zsh
 zplug "zsh-users/zsh-completions", lazy:true
 zplug "greymd/docker-zsh-completion", lazy:true
 
-autoload -U compinit; compinit -u
+autoload -U compinit
 
 setopt auto_cd            # ディレクトリ名のみで移動
 setopt auto_list          # 補完候補を一覧表示
@@ -149,11 +151,22 @@ fi
 #------------------------------------------------------------
 
 # 未インストール項目をインストールする
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
+if [ ! ~/.zplug/last_zshrc_check_time -nt ~/.zshrc ]; then
+    touch ~/.zplug/last_zshrc_check_time
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
     fi
 fi
 
 zplug load
+
+
+#------------------------------------------------------------
+# zprof
+#------------------------------------------------------------
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi
