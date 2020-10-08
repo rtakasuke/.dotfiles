@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-check:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -24,7 +24,6 @@ jobs:
 
     - name: Install required packages
       run: |
-        brew install shellcheck
         pip install --upgrade pip
         pip install vim-vint
 
