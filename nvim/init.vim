@@ -234,7 +234,7 @@ augroup vimrc-filetype
   autocmd FileType yaml setlocal sw=2 sts=2 ts=2 et
 augroup END
 
-" C-j : Insertモードを抜ける
+" C-j : Esc
 inoremap <C-j> <Esc>
 
 " gp : PASTEモードに移行。NORMALモードに戻るとPASTEモードも解除
