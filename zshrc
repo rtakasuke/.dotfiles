@@ -125,8 +125,8 @@ zstyle ':completion:*:default'   menu select=1
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:[-_]=[-_]'
 
 # kubernetes
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-[[ /usr/local/bin/minikube ]] && source <(minikube completion zsh)
+# [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+# [[ /usr/local/bin/minikube ]] && source <(minikube completion zsh)
 
 
 #------------------------------------------------------------
