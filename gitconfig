@@ -48,7 +48,7 @@ log-graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %C
 log-all   = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
 
 [core]
-editor = /usr/local/bin/nvim
+editor = nvim
 
 [difftool "sourcetree"]
 cmd = opendiff \"$LOCAL\" \"$REMOTE\"

@@ -77,6 +77,7 @@ alias diff='colordiff'
 alias hist='history'
 alias dk='docker'
 alias dkc='docker-compose'
+alias k='kubectl'
 
 
 #------------------------------------------------------------
